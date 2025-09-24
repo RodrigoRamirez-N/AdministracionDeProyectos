@@ -153,3 +153,7 @@ Y ahora podrás entrar a tu componente (recuerda cambiar la `X` por el número d
 [http://localhost:4200/equipoX/holaMundoPath](https://www.google.com/search?q=http://localhost:4200/equipoX/holaMundoPath)
 
 Y así podrás ver el contenido de tu componente.
+
+## Borrar o desaser
+
+En caso de que te equivoques o quieras borrar tu componente solo borra la carpeta donde esta el componente o los archivos .ts, .html, .css y ya el programa te marcara error de las importaciones que la usaban y solo borras esos import, pir ejemplo para el componente que creeaste puedes irte directo a la carpeta `modules/equipoX/src/HolaMundo` y borrarla. (no vallas a borrar lo que ya esta echo)
