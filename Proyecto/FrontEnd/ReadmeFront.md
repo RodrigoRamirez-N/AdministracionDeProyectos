@@ -38,7 +38,7 @@ Te deberá mostrar algo como esto:
 
 ![alt text](imagenesReadme/{04FB0100-C66D-44BF-84A3-7ABDD11E9527}.png)
 
-Dentro del proyecto, encontrarás los archivos para que se ejecute Angular. Asegúrate de tener la carpeta **`node_modules`**. En caso de que no la tengas, puedes ejecutar este comando en la terminal, en la ruta **`\CampusVirtual\FrontEnd\CampusVirtual`**:
+Dentro del proyecto, encontrarás los archivos para que se ejecute Angular. Asegúrate de tener la carpeta **`node_modules`**. En caso de que no la tengas, puedes ejecutar este comando en la terminal, en la ruta **`\Proyecto\FrontEnd\CampusVirtual`**:
 
 ```bash
 npm install
@@ -48,7 +48,7 @@ npm install
 
 ## Levantar el Frontend
 
-A partir de aquí, siempre nos quedaremos en esta ruta: `< Tu ruta donde tengas el repo >\CampusVirtual\FrontEnd\CampusVirtual>`. Para ejecutar el programa, solo tenemos que hacer:
+A partir de aquí, siempre nos quedaremos en esta ruta: `< Tu ruta donde tengas el repo >\Proyecto\FrontEnd\CampusVirtual>`. Para ejecutar el programa, solo tenemos que hacer:
 
 ```bash
 ng serve -o
