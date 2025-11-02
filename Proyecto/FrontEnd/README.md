@@ -170,9 +170,9 @@ En caso de que te equivoques o quieras borrar tu componente solo borra la carpet
 | **Rojo Transparente** | `#EE001C33` | Variante semitransparente del rojo principal. Ideal para fondos sutiles, estados hover o resaltados secundarios. | Utilizar solo como apoyo visual, no como color principal. |
 | **Negro** | `#000000` | Texto principal. | Siempre sobre fondos claros para máxima legibilidad. |
 | **Blanco** | `#FFFFFF` | Fondos generales y fondo del menú inferior. | Mantener fondos limpios y neutros para resaltar otros colores. |
-| **Gris** | `#CCCCCC` | Tarjetas de contenido e íconos inactivos del menú inferior. | Suficientemente claro para no competir con el texto negro, pero visible sobre fondo blanco. |
+| **Gris** | `#F0F0F0` | Tarjetas de contenido e íconos inactivos del menú inferior. | Suficientemente claro para no competir con el texto negro, pero visible sobre fondo blanco. |
 | **Texto en Botones** | `#FFFFFF`, `#000000` o transparente | Texto dentro de los botones. | Asegurar buen contraste; **no usar el rojo principal** como color de texto. |
 
 
 ### **Ejemplo de uso**
-<img src="https://github.com/user-attachments/assets/d769d6d4-9811-46ca-9a44-a2446a741ade" alt="exampleUI" width="300" />
+<img src="imagenesReadme/exampleUI.png" alt="exampleUI" width="350"/>
