@@ -157,3 +157,22 @@ Y así podrás ver el contenido de tu componente.
 ## Borrar o deshacer
 
 En caso de que te equivoques o quieras borrar tu componente solo borra la carpeta donde esta el componente o los archivos .ts, .html, .css y ya el programa te marcara error de las importaciones que la usaban y solo borras esos import, pir ejemplo para el componente que creeaste puedes irte directo a la carpeta `modules/equipoX/src/HolaMundo` y borrarla. (no vallas a borrar lo que ya esta echo)
+
+
+-----
+## 🎨 Paleta de Colores y Reglas de Uso
+
+### **Colores Principales**
+
+| Color | Código | Uso | Regla |
+|-------|---------|-----|-------|
+| **Rojo Principal** | `#EE001C` | Color de identidad y acento principal. Se usa en botones principales, títulos importantes y la sección activa del menú inferior. | Usar con moderación para mantener impacto visual. |
+| **Rojo Transparente** | `#EE001C33` | Variante semitransparente del rojo principal. Ideal para fondos sutiles, estados hover o resaltados secundarios. | Utilizar solo como apoyo visual, no como color principal. |
+| **Negro** | `#000000` | Texto principal. | Siempre sobre fondos claros para máxima legibilidad. |
+| **Blanco** | `#FFFFFF` | Fondos generales y fondo del menú inferior. | Mantener fondos limpios y neutros para resaltar otros colores. |
+| **Gris** | `#F0F0F0` | Tarjetas de contenido e íconos inactivos del menú inferior. | Suficientemente claro para no competir con el texto negro, pero visible sobre fondo blanco. |
+| **Texto en Botones** | `#FFFFFF`, `#000000` o transparente | Texto dentro de los botones. | Asegurar buen contraste; **no usar el rojo principal** como color de texto. |
+
+
+### **Ejemplo de uso**
+<img src="imagenesReadme/exampleUI.png" alt="exampleUI" width="350"/>
