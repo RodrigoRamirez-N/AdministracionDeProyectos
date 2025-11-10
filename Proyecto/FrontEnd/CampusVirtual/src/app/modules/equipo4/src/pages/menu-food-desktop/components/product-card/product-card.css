@@ -1,0 +1,87 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  /* cambiar al final */
+  height: min-content;
+  width: 250px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+/* Aseguramos que la imagen interna llene el contenedor y mantenga un recorte bonito */
+.img img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: start;
+  padding: 8px;
+
+}
+
+.body_row_1 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  height: min-content;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.body_row_2 {
+  font-size: 16px;
+  height: min-content;
+  padding-bottom: 0px;
+  color: #666666;
+  font-weight: 400;
+  margin: 0;
+}
+
+.body_row_3 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price{
+  color: #059600;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add{
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  border: none;
+}
+
+.heart path{
+ width:24px ; 
+ height: 24px; 
+ font-weight: 50;
+ fill: #666666;
+ stroke-width: 400000px;
+}
