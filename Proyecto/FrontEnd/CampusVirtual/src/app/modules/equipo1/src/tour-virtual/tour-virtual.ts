@@ -11,6 +11,6 @@ export class TourVirtual {
   constructor(private router: Router) {}
 
   volverAHome() {
-    this.router.navigate(['/equipo2']);
+    this.router.navigate(['/equipo1']);
   }
 }
