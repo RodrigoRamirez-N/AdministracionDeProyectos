@@ -1,0 +1,71 @@
+/* La tarjeta blanca principal */
+.item-card {
+  display: flex; /* Esto pone los elementos uno al lado del otro */
+  align-items: center; /* Esto los centra verticalmente */
+  background-color: white;
+  margin: 16px; /* Separación de las orillas */
+  padding: 12px;
+  border-radius: 16px; /* Bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+/* La imagen */
+.item-imagen {
+  width: 80px; /* Tamaño fijo para la imagen */
+  height: 80px;
+  object-fit: cover; /* Para que la imagen no se deforme */
+  border-radius: 12px; /* Bordes redondeados */
+  margin-right: 12px;
+}
+
+/* El contenedor de la información */
+.item-info {
+  flex-grow: 1; /* Esto hace que ocupe todo el espacio sobrante */
+}
+
+.item-nombre {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 4px 0; /* Sin margen arriba, 4px abajo */
+}
+
+/* El precio en verde, como en tu imagen */
+.item-precio {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #38a169; /* Un tono de verde */
+  margin: 0;
+}
+
+/* El selector de cantidad */
+.item-cantidad {
+  display: flex;
+  align-items: center;
+  background-color: #fcebeb; /* Fondo rojo clarito */
+  border-radius: 20px; /* Para hacerlo un "píldora" */
+  padding: 4px;
+}
+
+.item-cantidad span {
+  font-weight: bold;
+  padding: 0 8px; /* Espacio para el número */
+}
+
+/* Los botones de +/- */
+.boton-menos,
+.boton-mas {
+  border: none;
+  background-color: #e53e3e; /* Rojo como el de "El Punto" */
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%; /* Círculo perfecto */
+  cursor: pointer;
+}
+
+.boton-menos {
+  background-color: #fcebeb; /* Fondo rojo clarito */
+  color: #e53e3e; /* Texto rojo */
+}
