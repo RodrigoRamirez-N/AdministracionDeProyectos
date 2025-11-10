@@ -13,4 +13,7 @@ export class HolaEquipo1 {
   navegarATourVirtual() {
     this.router.navigate(['/equipo1/tour-virtual']);
   }
+  btnGaleria(){
+    this.router.navigate(['/equipo1/Galeria']);
+  }
 }
