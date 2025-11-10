@@ -1,0 +1,31 @@
+.container{
+	display: flex;
+	flex-direction: column; /* coloca el banner arriba y el layout debajo */
+	gap: 1rem;
+	width: 1200px;
+}
+
+
+[class~=layout] {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 280px 1fr;
+	gap: 2rem;
+	padding: 0 2rem 1.5rem; /* quitar padding superior para que el banner se vea pegado arriba */
+}
+
+.left {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.left {
+	align-self: start;
+}
+
+@media (max-width: 1024px) {
+	[class~=layout] {
+		grid-template-columns: 240px 1fr;
+	}
+}
