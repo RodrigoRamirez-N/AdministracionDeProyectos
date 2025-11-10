@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HolaEquipo2 } from './src/hola-equipo2/hola-equipo2';
+
 const routes: Routes = [
     {
         path: '',
