@@ -1,0 +1,51 @@
+/* La tarjeta blanca del resumen */
+.summary-card {
+  background-color: white;
+  margin: 16px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.summary-fila {
+  display: flex;
+  justify-content: space-between; /* ¡Esto manda el precio a la derecha! */
+  font-size: 1rem;
+  color: #4a5568; /* Un gris oscuro */
+  margin-bottom: 12px; /* Espacio entre filas */
+}
+
+.summary-fila.total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a202c; /* Negro */
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0; /* Línea divisoria */
+}
+
+.precio-verde {
+  font-weight: bold;
+  color: #38a169; /* Verde */
+}
+
+/* Contenedor del botón para centrarlo y darle espacio */
+.contenedor-boton-pagar {
+  padding: 16px;
+  /* Esto lo "pega" abajo en la pantalla */
+  position: sticky;
+  bottom: 0;
+  background-color: #f7fafc; /* Mismo fondo gris de la app */
+}
+
+.boton-pagar {
+  width: 100%; /* Que ocupe todo el ancho */
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #e53e3e; /* Rojo "El Punto" */
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
