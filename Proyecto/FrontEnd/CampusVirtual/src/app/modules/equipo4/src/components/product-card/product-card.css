@@ -3,8 +3,7 @@
   flex-direction: row;
   align-items: center;
   background-color: white;
-  margin: 16px 0; /* Mantiene los márgenes de Figma */
-  padding: 12px;
+  padding: 0;
   border-radius: 12px;
   /* width: 369px; <-- ¡BORRA O COMENTA ESTA LÍNEA! */
   width: 100%; /* ¡O REEMPLÁZALA POR ESTA! */
@@ -13,8 +12,8 @@
   overflow: hidden;
 }
 .card-imagen {
-  width: 110px; /* Ancho de la imagen de Figma */
-  height: 110px; /* Alto de la imagen de Figma */
+  height: 100%; /* Alto de la imagen de Figma */
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 0; /* La imagen no tiene bordes redondeados en Figma */
   margin-right: 12px; /* Espacio entre imagen e info (de Figma) */
@@ -27,6 +26,7 @@
   flex-direction: column; /* Pone info-titulo, lugar, precio en columna */
   justify-content: center; /* Centra verticalmente la info */
   margin-right: 8px; /* Espacio antes de los likes/boton */
+  padding: 8px;
 }
 
 .info-titulo {
@@ -55,6 +55,7 @@
   align-items: flex-end; 
   justify-content: space-between;
   align-self: stretch; /* Estira esta columna */
+  padding: 8px;
 }
 
 .likes {
@@ -71,6 +72,7 @@
 }
 
 .boton-mas {
+  display: flex;
   border: none;
   background-color: #e53e3e; /* Rojo */
   color: white;
@@ -80,4 +82,6 @@
   height: 32px;
   border-radius: 8px; /* Cuadrado redondeado */
   cursor: pointer;
+  justify-content: center;
+  align-items: end;
 }

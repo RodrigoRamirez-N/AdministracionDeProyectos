@@ -5,6 +5,21 @@
   background-color: #f7fafc;
 }
 
+/* estilos de barra de busqueda */
+.search-bar {
+  width: 100%;
+  border-radius: 1000px;
+  height: 45px;
+  border: none;
+  background-color: #f0f0f0;
+  padding: 15px 20px;
+}
+
+.search-bar:focus {
+  border: 1px solid #c0c0c0;
+  outline: none;
+}
+
 /* 1. CSS PARA EL RECTÁNGULO SUPERIOR */
 .top-bar {
   background-color: white;
@@ -24,14 +39,14 @@
 
 .filter-buttons {
   display: flex;
-  justify-content: space-around;
-  padding: 16px;
+  padding: 16px 0 16px 16px;
+  gap: 12px;
 }
 
 .filter-button {
   background-color: white;
   border: 1px solid #e2e8f0;
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 8px 16px;
   font-size: 0.9rem;
   font-weight: bold;
@@ -78,11 +93,11 @@
 }
 
 .product-list {
-  flex-grow: 1;
-  padding: 0 16px 80px 16px; 
+  padding: 16px ; 
   display: flex; /* Para poder usar gap */
   flex-direction: column; /* Para apilar las tarjetas */
-  gap: 10px;
+  gap: 16px;
+  height: 100%;
 }
 
 /* 3. CSS PARA ICONOS DEL FOOTER */
@@ -95,7 +110,7 @@
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
