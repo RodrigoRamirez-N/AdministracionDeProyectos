@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HolaEquipo1 } from './src/hola-equipo1/hola-equipo1';
 import { TourVirtual } from './src/tour-virtual/tour-virtual';
 import { Galeria } from './src/galeria/galeria';
+import { Transporte } from './src/transporte/transporte';
 
 const routes: Routes = [
 	{
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
 		path: 'Galeria',
 		component: Galeria,
+	},
+	{
+		path: 'transporte',
+		component: Transporte,
 	},
 ];
 
