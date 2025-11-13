@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>Información del Campus - Ciudad Universitaria UAdeC</h1>
+  <section class="card">
+    <h2><i class="icon">📞</i> Directorio del Campus</h2>
+    <input type="text" [formControl]="searchControl" placeholder="Buscar por facultad, nombre o cargo...">
+    
+    <div *ngIf="directory$ | async as faculties" class="directory-list">
+      <div *ngFor="let faculty of faculties" class="faculty-accordion">
+        <button class="faculty-header" (click)="toggleFaculty(faculty.id)">
+          <span>{{ faculty.name }}</span>
+          <span class="faculty-toggle-icon">{{ expandedFacultyId === faculty.id ? '−' : '+' }}</span>
+        </button>
+        <div class="faculty-content" *ngIf="expandedFacultyId === faculty.id">
+          <div *ngFor="let contact of faculty.contacts" class="contact-item">
+            <p><strong>{{ contact.name }}</strong> - {{ contact.title }}</p>
+            <p class="contact-details">
+              <span *ngFor="let phone of contact.phones">{{ phone.number }} &nbsp;</span>
+              <a *ngIf="contact.email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="card" *ngIf="libraryData$ | async as data">
+    <h2><i class="icon">📚</i> Bibliotecas</h2>
+    <div class="library-info">
+      <h3>{{ data.info_general.name }}</h3>
+      <p><strong>Horario:</strong> {{ data.info_general.schedule }}</p>
+      <p><strong>Ubicación:</strong> {{ data.info_general.location }}</p>
+      <p><strong>Informes:</strong> {{ data.info_general.contact_phone }} | <a href="mailto:{{ data.info_general.contact_email }}">{{ data.info_general.contact_email }}</a></p>
+      <a [href]="data.info_general.website_url" target="_blank" class="btn">Acceso al Sistema de Infotecas</a>
+    </div>
+    <h4>Salas y Espacios Disponibles:</h4>
+    <div class="rooms-grid">
+      <div *ngFor="let room of data.salas_y_espacios" class="room-card">
+        <strong>{{ room.name }}</strong>
+        <p>Capacidad: {{ room.capacity }}</p>
+        <p>Equipo: {{ room.equipment }}</p>
+      </div>
+    </div>
+  </section>
+  <div class="side-by-side">
+    <section class="card">
+      <h2><i class="icon">⚽</i> Campos Deportivos</h2>
+      <div *ngIf="sportFields$ | async as fields">
+        <div *ngFor="let field of fields" class="info-item">
+          <strong>{{ field.name }}</strong>
+          <p>{{ field.location }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><i class="icon">⭐</i> Números Más Usados</h2>
+      <div *ngIf="importantNumbers$ | async as numbers">
+        <div *ngFor="let num of numbers" class="info-item">
+          <strong>{{ num.name }} - {{ num.person_name }}</strong>
+          <p>{{ num.phone }} | <a href="mailto:{{ num.email }}">{{ num.email }}</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
