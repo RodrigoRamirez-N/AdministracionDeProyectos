@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+interface GalleryImage {
+    url: string;
+    loaded: boolean; // true si cargó, false o null si falló o está pendiente
+}
+
 @Component({
     selector: 'app-galeria',
     imports: [CommonModule],
     templateUrl: './galeria.html',
     styleUrl: './galeria.css'
 })
+
 export class Galeria {
 
     images: string[] = ['https://lh3.googleusercontent.com/gps-cs-s/AG0ilSziVvM_PVKz9Qx4epJVutdJapF3PxuOI3YmJ1VH9w46pY849hI1ZUrQ80kP1gNhq3mVpcalt_nY_hYUaa-iOtKAPAK2YyZnT9egdPjaUXBHEgMnh8wizc4vtLYMS5X2HhEqExsOMg=s387-k-no',
@@ -102,11 +108,8 @@ export class Galeria {
         'https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwlMz_nXmib3Q7NrP1laX2x4vt94rLGDW3e2cABXCxhE34t8NWRDglv0W-qR_Zfhd3j6gvSNLNx56oTMX03jIddK-Kt4JqoitsTqUC_I0FqZNU2cdQmvudLCj4ZxuYwx0SjKi264A=s406-k-no',
         'https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyFC6khdoNunlVUqm31JN80L9UseIXG-HnzleZGV69vAIBBOUjWFNBa37UK5nha2-_gufQ6RpKib57k3rimBg6glclP4Y6uxfMhTEwFMy_kOpxhPZXJTfX0cDPzAHfS2skOI4Jb=s677-k-no',
     ]
-
-
     onImageError(failedUrl: string): void {
         this.images = this.images.filter(url => url !== failedUrl);
 
-        console.warn(`Imagen no cargada y eliminada de la galería: ${failedUrl}`);
     }
 }
