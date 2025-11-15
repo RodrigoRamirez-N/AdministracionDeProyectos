@@ -29,3 +29,32 @@
 		grid-template-columns: 240px 1fr;
 	}
 }
+
+
+.btn_container {
+  display: flex;
+  height: 50px;
+	width: 100%;
+	padding: 0 150px;
+  position: fixed;
+	bottom: 100px;
+	justify-content: end;
+}
+
+.btn_cart{
+	height: 60px;
+	width: 60px;
+	aspect-ratio: 1/1;
+  padding: 10px;
+	aspect-ratio: 1/1;
+  border-radius: 100%;
+	border: none;
+	background-color: #EE001C;
+	cursor: pointer;
+}
+
+.space_btn_container{
+	display: inline-block;
+	width: 100%;
+	height: 150px;
+}
