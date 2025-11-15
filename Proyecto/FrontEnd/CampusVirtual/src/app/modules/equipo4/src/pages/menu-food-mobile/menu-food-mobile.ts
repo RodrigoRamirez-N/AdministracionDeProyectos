@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-// ¡¡1. AÑADE ESTA LÍNEA!!
+import { RouterModule } from '@angular/router';
 import { ProductCard } from '../../components/product-card/product-card'; 
 
 @Component({
   selector: 'app-menu-food-mobile',
   standalone: true,
   imports: [
-    ProductCard // <-- ¡¡2. AÑADE ESTO AQUÍ!!
+    ProductCard, 
+    RouterModule
   ],
   templateUrl: './menu-food-mobile.html',
   styleUrls: ['./menu-food-mobile.css'] 
