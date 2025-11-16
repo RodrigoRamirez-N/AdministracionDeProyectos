@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hola-equipo1',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './hola-equipo1.css'
 })
 export class HolaEquipo1 {
+  constructor(private router: Router) {}
 
+  navegarATourVirtual() {
+    this.router.navigate(['/equipo1/tour-virtual']);
+  }
+  btnGaleria(){
+    this.router.navigate(['/equipo1/Galeria']);
+  }
 }
