@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import Session, select
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlmodel import Session, select, SQLModel, Field
+from typing import List, Optional
 
 from Modules.Equipo4.models.database import get_session_equipo4
 from Modules.Equipo4.models.models import (
@@ -12,6 +13,21 @@ from Modules.Equipo4.models.models import (
 )
 
 router = APIRouter()
+
+
+# ----------------------------- Schemas (Create) -----------------------------
+class OrderItemIn(SQLModel):
+    food_id: int
+    quantity: int = Field(default=1, ge=1)
+
+
+class OrderCreate(SQLModel):
+    food_stand_id: int
+    payment_method_id: int
+    type: Optional[str] = None
+    instructions: Optional[str] = None
+    status: Optional[str] = "pending"
+    items: List[OrderItemIn]
 
 
 # ----------------------------- Food Stands -----------------------------
@@ -92,6 +108,54 @@ def get_order(order_id: int, session: Session = Depends(get_session_equipo4)):
     order = session.get(Order, order_id)
     if not order:
         raise HTTPException(status_code=404, detail="Order no encontrado")
+    return order
+
+
+@router.post("/orders", response_model=Order, status_code=status.HTTP_201_CREATED)
+def create_order(payload: OrderCreate, session: Session = Depends(get_session_equipo4)):
+    if not payload.items or len(payload.items) == 0:
+        raise HTTPException(status_code=400, detail="Debe incluir al menos un artículo en 'items'.")
+
+    # Validar existencia de FoodStand y PaymentMethod
+    food_stand = session.get(FoodStand, payload.food_stand_id)
+    if not food_stand:
+        raise HTTPException(status_code=404, detail="FoodStand no encontrado")
+
+    payment_method = session.get(PaymentMethod, payload.payment_method_id)
+    if not payment_method:
+        raise HTTPException(status_code=404, detail="PaymentMethod no encontrado")
+
+    # Validar existencia de foods y que pertenezcan al mismo food_stand
+    food_ids = [item.food_id for item in payload.items]
+    foods = session.exec(select(Food).where(Food.id.in_(food_ids))).all()
+    if len(foods) != len(set(food_ids)):
+        raise HTTPException(status_code=404, detail="Uno o más 'food_id' no existen")
+
+    for f in foods:
+        if f.food_stand_id != payload.food_stand_id:
+            raise HTTPException(status_code=400, detail="Todos los 'food_id' deben pertenecer al mismo 'food_stand_id'.")
+
+    # Crear orden e items sin anidar transacciones; un solo commit al final
+    order = Order(
+        food_stand_id=payload.food_stand_id,
+        payment_method_id=payload.payment_method_id,
+        type=payload.type,
+        instructions=payload.instructions,
+        status=payload.status,
+    )
+    session.add(order)
+    session.flush()  # asegura que order.id esté disponible
+
+    for item in payload.items:
+        order_item = OrderItem(
+            order_id=order.id,
+            food_id=item.food_id,
+            quantity=item.quantity if item.quantity is not None else 1,
+        )
+        session.add(order_item)
+
+    session.commit()
+    session.refresh(order)
     return order
 
 

@@ -5,6 +5,11 @@ INSERT INTO food_stands (id, name, description, telephone, available) VALUES
   (3, 'LIMONETA', 'Cafetería LIMONETA', NULL, 1),
   (4, 'Rico Robles', 'Cafetería Rico Robles', NULL, 1);
 
+-- Payment methods
+INSERT INTO payment_methods (id, method) VALUES
+  (1, 'Efectivo'),
+  (2, 'Tarjeta');
+
 
 -- Menu cafeteria
 INSERT INTO foods (id, food_stand_id, name, description, price, rating, image_url) VALUES
