@@ -1,0 +1,47 @@
+[
+  {
+    "id": 101,
+    "food_stand_id": 1,
+    "name": "Hamburguesa clásica",
+    "description": "Carne 120g, queso y lechuga",
+    "price": "95.00",
+    "rating": 4.5,
+    "image_url": "https://media.gq.com.mx/photos/649391b89ec62ce6c5b091a5/16:9/w_2240,c_limit/mejores-hamburguesas.jpg"
+  },
+  {
+    "id": 102,
+    "food_stand_id": 1,
+    "name": "Nachos con queso",
+    "description": "Totopos, queso y jalapeño",
+    "price": "65.00",
+    "rating": 4.2,
+    "image_url": "https://media.istockphoto.com/id/463751133/es/foto/nachos.jpg?s=612x612&w=0&k=20&c=I1Y0EGNlOAETCOJ-YUXnHj2cvQQs4yRxzMj011gI5as="
+  },
+  {
+    "id": 201,
+    "food_stand_id": 2,
+    "name": "Chilaquiles verdes",
+    "description": "Con pollo",
+    "price": "85.00",
+    "rating": 4.7,
+    "image_url": "https://cdn0.recetasgratis.net/es/posts/0/4/8/chilaquiles_verdes_con_pollo_75840_orig.jpg"
+  },
+  {
+    "id": 202,
+    "food_stand_id": 2,
+    "name": "Tacos al pastor (4)",
+    "description": "Con piña",
+    "price": "60.00",
+    "rating": 4.4,
+    "image_url": "https://comedera.com/wp-content/uploads/sites/9/2017/08/tacos-al-pastor-receta.jpg"
+  },
+  {
+    "id": 301,
+    "food_stand_id": 3,
+    "name": "Ensalada César",
+    "description": "Clásica",
+    "price": "70.00",
+    "rating": 4.1,
+    "image_url": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1200&auto=format&fit=crop"
+  }
+]

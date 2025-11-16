@@ -4,6 +4,9 @@
     [title]="p.title"
     [price]="p.price"
     [description]="p.description || ''"
-    [imageUrl]="p.imageUrl || ''">
+    [imageUrl]="p.imageUrl || ''"
+    [productId]="p.id"
+    [standId]="p.standId ?? null"
+    (add)="onAdd($event)">
   </app-product-card>
 </div>
