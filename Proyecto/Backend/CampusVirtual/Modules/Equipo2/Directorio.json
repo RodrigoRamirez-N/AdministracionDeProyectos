@@ -1,0 +1,375 @@
+[
+  {
+    "faculty": "Coordinación de Unidad Sureste",
+    "contacts": [
+      {
+        "name": "DRA. EVA KERENA HERNÁNDEZ MARTÍNEZ",
+        "title": "Coordinadora Unidad Sureste",
+        "phone": ["(844) 4149936", "(844) 4149937","(844) 4122990", "(844) 4120348"],
+        "email": "kerenahernandez@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. CARLOS TADEO CASTILLO AGUILLÓN",
+        "title": "Secretario Particular",
+        "phone": ["(844) 4149936", "(844) 4149937","(844) 4122990"],
+        "email": "tadeocastillo@uadec.edu.mx"
+      },
+      {
+        "name": "T.  GRACE GABRIELA FLORES SAUCEDA",
+        "title": "Asistente de Coordinadora",
+        "phone": ["(844) 4122990", "(844) 4149936"],
+        "email": "grace-flores@uadec.edu.mx"
+      },
+      {
+        "name": "DR. VÍCTOR COBOS MARTÍNEZ",
+        "title": "Secretario General",
+        "phone": ["(844) 4149936", "(844) 4122990"],
+        "email": "vicomtz4@hotmail.com"
+      },
+      {
+        "name": "DR. BRAULIO JOSUÉ LARA REYES",
+        "title": "Jefe Departamento de Asuntos Académicos",
+        "phone": ["(844) 4149936", "(844) 4122990"],
+        "email": "brlarar@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. JOQUEBED ALEMÁN GALLEGOS",
+        "title": "Jefa Departamento Administrativo",
+        "phone": ["(844) 4149936", "(844) 4149937"],
+        "email": "joquebed.aleman@uadec.edu.mx"
+      },
+      {
+        "name": "M.M. CYNTHIA GALVÁN ESPARZA",
+        "title": "Jefe del Departamento de Difusión Cultural y Comunicación",
+        "phone": ["(844) 4122990", "(844) 4149936"],
+        "email": "cyntiagalvan@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. MARIO ALBERTO NAJERA HERNÁNDEZ",
+        "title": "Jefe del Departamento de Servicio Social y Prácticas Profesionales",
+        "phone": ["(844) 4122990", "(844) 4149936"],
+        "email": "mario.najera@uadec.edu.mx"
+      },
+      {
+        "name": "L.C.  DULCE JAZMÍN DÁVALOS VILLARREAL",
+        "title": "Jefe del Departamento de Extensión y Vinculación",
+        "phone": ["(844) 4122990", "(844) 4149936"],
+        "email": "dulcedavalos@uadec.edu.mx"
+      }
+    ]
+  },
+  {
+    "faculty": "Infoteca Central Unidad Arteaga",
+    "contacts": [
+      {
+        "name": "LIC. PATRICIA GABRIELA GONZÁLEZ SÁNCHEZ",
+        "title": "Infoteca Central Unidad Arteaga",
+        "phone": ["(844) 4111419"],
+        "email": "pgonzale@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. ALMA ROSA SALAZAR CASTILLO",
+        "title": "Técnico Administrativo",
+        "phone": ["(844)4111400"],
+        "email": "castilloalma@uadec.edu.mx"
+      },
+      {
+        "name": "LIC.  JOSÉ LUIS DELGADO CARRIZALES",
+        "title": "Jefatura Administrativa",
+        "phone": ["(844)4111400"],
+        "email": "luisdelgado@uadec.edu.mx"
+      },
+      {
+        "name": "LIC.  ESMERALDA ELIZABETH GAMBOA ROSALES",
+        "title": "Jefatura de Atención al Usuario T.V.",
+        "phone": ["(844)4111400"],
+        "email": "esmeraldagamboarosales@uadec.edu.mx"
+      },
+      {
+        "name": "LIC.  MELISSA GÓMEZ YÁÑEZ",
+        "title": "Jefatura de Atención al Usuario T.M.",
+        "phone": ["(844)4111400"],
+        "email": "melissa_gomez@uadec.edu.mx"
+      }
+    ]
+  },
+  {
+    "faculty": "Facultad de Arquitectura",
+    "contacts": [
+      {
+        "name": "MTRO.ARQ. JESÚS ALBERTO PADILLA GARZA",
+        "title": "Director",
+        "phone": ["(844) 6891001"],
+        "email": "j_padilla@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. VALERIA YAZMIN MENCHACA RODRÍGUEZ",
+        "title": "Secretaria",
+        "phone": ["(844) 6891001"],
+        "email": "yazmin.menchaca@uadec.edu.mx"
+      },
+      {
+        "name": "ING. ALEJANDRO CÁRDENAS GALLEGOS",
+        "title": "Secretario Académico",
+        "phone": ["(844) 6891004"],
+        "email": "alejandro.cardenas@uadec.edu.mx"
+      },
+      {
+        "name": "ARQ. IRLANDA VALDÉS COVARRUBIAS",
+        "title": "Secretaría Administrativa",
+        "phone": ["(844) 6891024"],
+        "email": "irlanda_valdes@uadec.edu.mx"
+      }
+      ,
+      {
+        "name": "ARQ.  ANA LUCÍA GALVÁN FLORES",
+        "title": "Coordinadora Departamento de Titulación",
+        "phone": ["(844) 6891006"],
+        "email": "anagalvanflores@uadec.edu.mx"
+      }
+      ,
+      {
+        "name": "DRA.  REYNA ARELI VAZQUEZ AGUILAR",
+        "title": "Coordinadora del Pasgrado",
+        "phone": ["(844) 6891002"],
+        "email": ""
+      }
+    ]
+  },
+  {
+    "faculty": "Academia Interamericana de Derechos Humanos",
+    "contacts": [
+      {
+        "name": "DRA.  IRENE SPIGNO",
+        "title": "Directora General",
+        "phone": ["(844) 4111429"],
+        "email": "irenespigno@uadec.edu.mx"
+      },
+      {
+        "name": "DR.  JOSÉ ANTONIO ESTRADA MARÚN",
+        "title": "Secretario Académico",
+        "phone": ["(844) 4111429"],
+        "email": "antoniomarun@uadec.edu.mx"
+      },
+      {
+        "name": "MTRA. WENDOOLYD BALDERAS CARDONA",
+        "title": "Seceretaria Administrativa",
+        "phone": ["(844) 4100374", "(844) 4100502"],
+        "email": "w.balderas@uadec.edu.mx"
+      },
+      {
+        "name": "DR. CARLOS EULALIO ZAMORA VALADEZ",
+        "title": "Coordinador General",
+        "phone": ["(844) 4100374", "(844) 4100502"],
+        "email": "carloszamora@uadec.edu.mx"
+      },
+      {
+        "name": "DR.  RODRIGO SANTIAGO JUÁREZ",
+        "title": "Director del Centro de Educación para los Derechos Humanos",
+        "phone": ["(844) 4111429"],
+        "email": "rsantiago@uadec.edu.mx"
+      },
+      {
+        "name": "DRA.  YÉSSICA ESQUIVEL ALONSO",
+        "title": "Directora del Centro de Derechos Civiles y Políticos",
+        "phone": ["(844) 4111429"],
+        "email": "esquively@uadec.edu.mx"
+      },
+      {
+        "name": "MTRA. ADRIANA SALINAS CERRILLO",
+        "title": "Coordinadora del Centro de Educación para los Derechos Humanos",
+        "phone": ["(844) 4111429"],
+        "email": "adriana.salinas@uadec.edu.mx"
+      },
+      {
+        "name": "MTRA. PALOMA LUGO SAUCEDO",
+        "title": "Investigadora B",
+        "phone": ["(844) 4111429"],
+        "email": "palomalugosaucedo@uadec.edu.mx"
+      }
+
+    ]
+  },
+  {
+    "faculty": "Facultad de Ingeniería",
+    "contacts": [
+      {
+        "name": "DR.  CARLOS RODRIGO MUÑÍZ VALDEZ",
+        "title": "Director",
+        "phone": ["(844) 6891100", "(844) 4101094"],
+        "email": "rodrigo.muniz@uadec.edu.mx"
+      },
+      {
+        "name": "LETICIA UDAVE RODRÍGUEZ",
+        "title": "Secretaria",
+        "phone": ["(844) 6891100", "(844) 4101094"],
+        "email": "lety_ur@hotmail.com"
+      },
+      {
+        "name": "DR. JESÚS FERNANDO MARTÍNEZ VILLAFAÑE",
+        "title": "Secretario Académico",
+        "phone": ["(844) 6891100"],
+        "email": "jesusmartinezvillafane@uadec.educ.mx"
+      },
+      {
+        "name": "DR.  JUAN CARLOS ORTIZ CUELLAR",
+        "title": "Secretario Administrativo",
+        "phone": ["(844) 6891103"],
+        "email": "carlosortiz@uadec.edu.mx"
+      },
+      {
+        "name": "DR. JESÚS SALVADOR GALINDO VALDÉS",
+        "title": "Coordinador de Posgrado",
+        "phone": ["(844) 6891108"],
+        "email": "s_galindo@uadec.edu.mx"
+      }
+    ]
+  },
+  {
+    "faculty": "Facultad de Sistemas",
+    "contacts": [
+      {
+        "name": "DRA. MARÍA DEL CARMEN CORONADO RIVERA",
+        "title": "Directora",
+        "phone": ["(844) 6891030"],
+        "email": "mcoronadorivera@uadec.edu.mx"
+      },
+      {
+        "name": "C. KARLA YAMILETH OVIEDO RUVALCABA",
+        "title": "Secretaria T.M.",
+        "phone": ["(844) 6891030", "(844)6891032"],
+        "email": "karla_oviedo_ruvalc@uadec.edu.mx"
+      },
+      {
+        "name": "C. MARISOL DÍAZ TORRES",
+        "title": "Secretaria T.V",
+        "phone": ["(844) 6891030"],
+        "email": "marisoldiaz@uadec.edu.mx"
+      },
+      {
+        "name": "M.I.A. PAMELA ESTEFANY RAMÍREZ GÓMEZ",
+        "title": "Secretaria Académica",
+        "phone": ["(844) 6891035"],
+        "email": "estefany.gomez@uadec.edu.mx"
+      },
+      {
+        "name": "M.C. SERGIO ARTURO TORRES RUIZ",
+        "title": "Secretario Administrativo",
+        "phone": ["(844) 6891033"],
+        "email": "sergio.torres@uadec.edu.mx"
+      },
+      {
+        "name": "M.ED.  ALMA BÉLICA MTANOUS VILLARREAL",
+        "title": "Coordinadora de Posgrado",
+        "phone": ["(844) 6891038"],
+        "email": "alma.mtanous@uadec.edu.mx"
+      },
+      {
+        "name": "M.C. DIANA GUADALUPE SÁNCHEZ MONCADA",
+        "title": "Coordinación de Vinculación",
+        "phone": ["(844) 6891041"],
+        "email": "diana_sanchez@uadec.edu.mx"
+      }
+    ]
+  },
+  {
+    "faculty": "Facultad de Artes Plásticas Prof. Rubén Herrera",
+    "contacts": [
+      {
+        "name": "M.C.H.D.G. RAQUEL TORRES GUTIÉRREZ",
+        "title": "Directora",
+        "phone": ["(844) 6891067"],
+        "email": "raquel.torres@uadec.edu.mx"
+      },
+      {
+        "name": "T.  JUANITA LICIAGA CANO",
+        "title": "Secretaria de Dirección",
+        "phone": ["(844) 6891066"],
+        "email": "juanitaliciaga@uadec.edu.mx"
+      },
+      {
+        "name": "M.C.G.I.D. EDEN PATRICIA CALVILLO MARTÍNEZ",
+        "title": "Secretaria Académica",
+        "phone": ["(844) 6891068"],
+        "email": "eden_calvillo@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. KARINA MONTES LÓPEZ",
+        "title": "Secretaria Administrativa",
+        "phone": ["(844) 6891069"],
+        "email": "karina.montes@uadec.edu.mx"
+      }
+    ]
+  },
+  {
+    "faculty": "Escuela Superior de Música",
+    "contacts": [
+      {
+        "name": "LIC. JUAN ANTONIO ESPERICUETA GARCÍA",
+        "title": "Director",
+        "phone": ["(844) 6891093"],
+        "email": "j.espericueta@uadec.edu.mx"
+      },
+      {
+        "name": "C. MARÍA TERESA RAMÍREZ SAUCEDO",
+        "title": "Secretaria",
+        "phone": ["(844) 6891093"],
+        "email": "ramirez_teresa@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. MARIELA MONTOYA FERNÁNDEZ",
+        "title": "Secretaria Académica",
+        "phone": ["(844) 6891093"],
+        "email": "montoya.m@uadec.edu.mx"
+      },
+      {
+        "name": "C. JUANA MARÍA MARTÍNEZ CERNA",
+        "title": "Técnico Administrativa",
+        "phone": ["(844) 6891093"],
+        "email": "j.cerna@uadec.edu.mx"
+      },
+      {
+        "name": "C. ESMERALDA VALDÉS DUARTE",
+        "title": "Técnico Administrativa",
+        "phone": ["(844) 6891093"],
+        "email": "esmeralda-valdes@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. ERICK RIVERA GONZÁLEZ",
+        "title": "Secretario Administrativo",
+        "phone": ["(844) 6891093"],
+        "email": "erick.rivera@uadec.edu.mx"
+      },
+      {
+        "name": "C. VERÓNICA DEL CARMEN MEDINA GALICIA",
+        "title": "Secretaria",
+        "phone": ["(844) 6891093"],
+        "email": "veronica.galicia@uadec.edu.mx"
+      },
+      {
+        "name": "LIC.  KAREN ATENAS GARCÍA GARCÍA",
+        "title": "Prefecta",
+        "phone": ["(844) 6891093"],
+        "email": "atenasgarcia@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. CARLOS ANDRÉS FLORES DÁVILA",
+        "title": "Prefecto",
+        "phone": ["(844) 6891093"],
+        "email": "carlos-davila@uadec.edu.mx"
+      },
+      {
+        "name": "M.M. JULIO IVÁN CÁRDENAS MARTÍNEZ",
+        "title": "Biblioteca y Colaborador",
+        "phone": ["(844) 6891093"],
+        "email": "julio.cardenas@uadec.edu.mx"
+      },
+      {
+        "name": "LIC. JESÚS SÁNCHEZ AGUILA",
+        "title": "Departamento de Acompañamiento Psicológico",
+        "phone": ["(844) 6891093"],
+        "email": "jesus.aguila@uadec.edu.mx"
+      }
+    ]
+  }
+]
