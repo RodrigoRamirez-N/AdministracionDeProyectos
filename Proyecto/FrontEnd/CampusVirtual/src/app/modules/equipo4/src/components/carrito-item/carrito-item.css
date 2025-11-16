@@ -37,6 +37,20 @@
   margin: 0;
 }
 
+.boton-eliminar {
+  margin-top: 6px;
+  background: transparent;
+  border: none;
+  color: #e53e3e;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.boton-eliminar:hover { color: #c53030; }
+
 /* El selector de cantidad */
 .item-cantidad {
   display: flex;

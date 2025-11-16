@@ -11,6 +11,19 @@
   justify-items: center;
 }
 
+.group-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 16px 0 8px;
+  color: #333;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 12px 0 4px;
+}
+
 
 .header h1 {
   font-size: 1.25rem;
@@ -25,4 +38,17 @@
   text-decoration: none;
   color: #1a202c;
   width: 40px; /* Para alinear el título */
+}
+
+.cart-count-badge {
+  display: inline-block;
+  background: #059600;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 6px;
+  border-radius: 12px;
+  line-height: 1;
+  vertical-align: middle;
+  margin-left: 8px;
 }

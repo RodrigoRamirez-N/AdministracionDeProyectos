@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,6 +14,10 @@ export class ProductCardComponent {
   // URL por defecto usada como fallback
   @Input() imageUrl = 'https://media.gq.com.mx/photos/649391b89ec62ce6c5b091a5/16:9/w_2240,c_limit/mejores-hamburguesas.jpg';
   @Input() description = '';
+  // Identificador interno del producto (opcional para manejo de carrito)
+  @Input() productId: string | number = '';
+  @Input() standId: number | null = null;
+  @Output() add = new EventEmitter<{ id: string | number; standId: number | null }>();
 
   // Mantener la misma URL por defecto en una propiedad dedicada
   defaultImageUrl = 'https://media.gq.com.mx/photos/649391b89ec62ce6c5b091a5/16:9/w_2240,c_limit/mejores-hamburguesas.jpg';
@@ -31,5 +35,9 @@ export class ProductCardComponent {
     if (!img) return;
     // Evitamos bucles infinitos si la imagen por defecto también falla
     if (img.src !== this.defaultImageUrl) img.src = this.defaultImageUrl;
+  }
+
+  onAddClick() {
+    this.add.emit({ id: this.productId, standId: this.standId });
   }
 }
