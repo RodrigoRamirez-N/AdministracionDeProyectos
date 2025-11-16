@@ -1,7 +1,4 @@
-# models/models_equipo4.py
-from __future__ import annotations
-
-from typing import Optional
+from typing import Optional, List
 from datetime import time, datetime
 from decimal import Decimal
 
@@ -18,9 +15,9 @@ class FoodStand(SQLModel, table=True):
     available: bool = True
 
     # Relaciones
-    foods: list["Food"] = Relationship(back_populates="food_stand")
-    opening_hours: list["OpeningHour"] = Relationship(back_populates="food_stand")
-    orders: list["Order"] = Relationship(back_populates="food_stand")
+    foods: List["Food"] = Relationship(back_populates="food_stand")
+    opening_hours: List["OpeningHour"] = Relationship(back_populates="food_stand")
+    orders: List["Order"] = Relationship(back_populates="food_stand")
 
 
 class OpeningHour(SQLModel, table=True):
@@ -47,7 +44,7 @@ class Food(SQLModel, table=True):
     image_url: Optional[str] = None
 
     food_stand: Optional[FoodStand] = Relationship(back_populates="foods")
-    order_items: list["OrderItem"] = Relationship(back_populates="food")
+    order_items: List["OrderItem"] = Relationship(back_populates="food")
 
 
 class PaymentMethod(SQLModel, table=True):
@@ -56,7 +53,7 @@ class PaymentMethod(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     method: str
 
-    orders: list["Order"] = Relationship(back_populates="payment_method")
+    orders: List["Order"] = Relationship(back_populates="payment_method")
 
 
 class Order(SQLModel, table=True):
@@ -75,7 +72,7 @@ class Order(SQLModel, table=True):
 
     food_stand: Optional[FoodStand] = Relationship(back_populates="orders")
     payment_method: Optional[PaymentMethod] = Relationship(back_populates="orders")
-    items: list["OrderItem"] = Relationship(back_populates="order")
+    items: List["OrderItem"] = Relationship(back_populates="order")
 
 
 class OrderItem(SQLModel, table=True):
