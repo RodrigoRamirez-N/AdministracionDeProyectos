@@ -1,0 +1,14 @@
+<app-app-header></app-app-header>
+<div class="container">
+	<app-location-banner [location]="selectedLocation"></app-location-banner>
+	<div class="layout">
+
+		<aside class="left">
+			<app-location-filter [(selected)]="selectedLocation"></app-location-filter>
+		</aside>
+		<section class="left">
+			<app-product-grid></app-product-grid>
+		</section>
+
+	</div>
+</div>

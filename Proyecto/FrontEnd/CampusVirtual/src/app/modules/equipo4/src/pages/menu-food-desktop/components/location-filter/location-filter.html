@@ -1,0 +1,13 @@
+<nav class="vertical-filter" aria-label="Filtro de ubicaciones">
+  <ul>
+    <li *ngFor="let l of locations">
+      <button
+        type="button"
+        class="filter-item"
+        [class.active]="l === selected"
+        (click)="pick(l)"
+        [attr.aria-current]="l === selected ? 'true' : null"
+      >{{ l }}</button>
+    </li>
+  </ul>
+</nav>

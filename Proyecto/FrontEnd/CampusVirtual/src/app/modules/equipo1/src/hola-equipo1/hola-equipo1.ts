@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RutasService, Ruta } from '../../rutas.service';
+=======
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+>>>>>>> 2157604c0a37207a4cfeb10263761fda12cf626c
 
 @Component({
   selector: 'app-hola-equipo1',
@@ -10,6 +15,7 @@ import { RutasService, Ruta } from '../../rutas.service';
   templateUrl: './hola-equipo1.html',
   styleUrl: './hola-equipo1.css'
 })
+<<<<<<< HEAD
 export class HolaEquipo1 implements OnInit {
 
   rutas: Ruta[] = [];
@@ -54,5 +60,18 @@ export class HolaEquipo1 implements OnInit {
     this.filtroTipo = '';
     this.filtroTexto = '';
     this.cargarRutas();
+=======
+export class HolaEquipo1 {
+  constructor(private router: Router) {}
+
+  navegarATourVirtual() {
+    this.router.navigate(['/equipo1/tour-virtual']);
+  }
+  btnGaleria(){
+    this.router.navigate(['/equipo1/Galeria']);
+  }
+  btnTransporte(){
+    this.router.navigate(['/equipo1/transporte']);
+>>>>>>> 2157604c0a37207a4cfeb10263761fda12cf626c
   }
 }

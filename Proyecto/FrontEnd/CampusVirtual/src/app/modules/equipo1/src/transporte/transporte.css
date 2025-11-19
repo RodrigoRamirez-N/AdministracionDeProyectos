@@ -1,0 +1,398 @@
+/* Colores principales */
+:root {
+  --rojo-principal: #EE001C;
+  --rojo-transparente: #EE001C33;
+  --negro: #000000;
+  --blanco: #FFFFFF;
+  --gris: #F0F0F0;
+  --text-muted: #6b6b6b;
+}
+
+/* Contenedor principal */
+.transporte-container {
+  min-height: 100vh;
+  background-color: var(--blanco);
+  padding: 40px 20px;
+}
+
+/* Header */
+.transporte-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 30px;
+  background: linear-gradient(135deg, var(--rojo-principal), rgba(238, 0, 28, 0.85));
+  border-radius: 10px;
+  color: var(--blanco);
+}
+
+.transporte-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.transporte-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Badge LOBUS */
+.badge-lobus {
+  display: inline-block;
+  background: var(--blanco);
+  color: var(--rojo-principal);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  margin-left: 10px;
+  vertical-align: middle;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* Page background accent */
+.transporte-container {
+  min-height: 100vh;
+  background-color: #fbfbfc; /* suave gris claro para diferenciar del blanco puro */
+  padding: 40px 20px;
+}
+
+/* Galería de Camiones */
+.camiones-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.camion-card {
+  background-color: var(--gris);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid var(--rojo-transparente);
+}
+
+.camion-card {
+  position: relative;
+}
+
+.camion-caption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  backdrop-filter: blur(4px);
+}
+
+.camion-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(238, 0, 28, 0.2);
+  border-color: var(--rojo-principal);
+}
+
+.camion-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.camion-card:hover .camion-caption {
+  background: var(--rojo-principal);
+  color: var(--blanco);
+}
+
+/* Contenido */
+.transporte-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Footer con botón */
+.transporte-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.btn-regresar {
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(238, 0, 28, 0.3);
+}
+
+.btn-regresar:hover {
+  background-color: #CC0018;
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(238, 0, 28, 0.5);
+}
+
+.btn-regresar:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .transporte-title {
+    font-size: 2rem;
+  }
+
+  .transporte-description {
+    font-size: 1rem;
+  }
+
+  .camiones-gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .camion-card img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .transporte-container {
+    padding: 20px 10px;
+  }
+
+  .transporte-header {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .transporte-title {
+    font-size: 1.5rem;
+  }
+
+  .transporte-description {
+    font-size: 0.95rem;
+  }
+
+  .btn-regresar {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Sección Ruta */
+.ruta-section {
+  background-color: #EE001C33	;
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.ruta-title {
+  color: var(--negro);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ruta-title::after {
+  content: '';
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: var(--rojo-principal);
+  border-radius: 4px;
+  margin: 12px auto 0 auto;
+  opacity: 0.95;
+}
+
+.ruta-text {
+  max-width: 850px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  color: #222;
+}
+
+.ruta-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.ruta-image-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.ruta-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 240px;
+}
+
+.horarios {
+  padding: 8px 6px;
+}
+
+.horarios-title {
+  margin-top: 0;
+  color: var(--negro);
+  font-size: 1.2rem;
+}
+
+.horarios-text {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.horarios-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.horario-card {
+  background: var(--gris);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--rojo-transparente);
+}
+
+.horario-card img {
+  width: 100%;
+  height: 640px;
+  object-fit: cover;
+  display: block;
+}
+
+.horarios-section {
+  max-width: 1000px;
+  margin: 70px auto 0 auto;
+  padding: 22px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.horarios-section .ruta-title {
+  text-align: left;
+  margin-left: 6px;
+}
+
+.horarios-section .horarios-text {
+  text-align: left;
+  margin-left: 6px;
+}
+
+@media (max-width: 900px) {
+  .ruta-main {
+    grid-template-columns: 1fr;
+  }
+
+  .horarios-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .horarios-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sección Estacionamiento */
+.estacionamiento-section {
+  max-width: 1000px;
+  margin: 40px auto 0 auto;
+  padding: 22px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  text-align: center;
+}
+
+.estacionamiento-title {
+  color: var(--negro);
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.estacionamiento-text {
+  color: #333;
+  max-width: 850px;
+  margin: 0 auto 16px auto;
+}
+
+.estacionamiento-image-card {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.estacionamiento-image {
+  width: 100%;
+  max-width: 900px;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.estacionamiento-image-card a {
+  display: block;
+  width: 100%;
+}
+
+.estacionamiento-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Button accent tweak */
+.btn-regresar {
+  border-radius: 999px;
+  padding: 10px 28px;
+  box-shadow: 0 6px 12px rgba(238, 0, 28, 0.18);
+}
+
+/* Small responsive polishing */
+@media (min-width: 1200px) {
+  .transporte-title { font-size: 3.4rem; }
+}
+
+
+@media (max-width: 768px) {
+  .estacionamiento-image {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .estacionamiento-image {
+    height: 180px;
+  }
+}
