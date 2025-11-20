@@ -1,0 +1,21 @@
+<div class="summary-card">
+  <div class="summary-fila">
+    <span>Artículos</span>
+    <span class="precio-verde">{{ itemsCount }}</span>
+  </div>
+  <div class="summary-fila">
+    <span>Subtotal</span>
+    <span class="precio-verde">{{ subtotal | number:'1.2-2' }} MXN</span>
+  </div>
+  <div class="summary-fila">
+    <span>Costo de envío</span>
+    <span class="precio-verde">{{ shipping | number:'1.2-2' }} MXN</span>
+  </div>
+  <div class="summary-fila total">
+    <strong>Total</strong>
+    <strong class="precio-verde">{{ total | number:'1.2-2' }} MXN</strong>
+  </div>
+</div>
+<div class="contenedor-boton-pagar">
+  <button class="boton-pagar" type="button">Finalizar Pedido</button>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="header">
+    <a routerLink="/equipo4" class="back-button">&lt;</a>
+    <h1>Mi Carrito <span class="cart-count-badge" *ngIf="selectedCount">{{ selectedCount }}</span></h1>
+  </div>
+
+  <ng-container *ngFor="let g of groups">
+    <h2 class="group-title">{{ g.standName }}</h2>
+    <ng-container *ngFor="let it of g.items">
+      <app-carrito-item [title]="it.title" [price]="it.price" [quantity]="it.quantity" [imageUrl]="it.imageUrl || ''"
+        (increment)="incrementItem(it)" (decrement)="decrementItem(it)" (remove)="removeItem(it)"></app-carrito-item>
+    </ng-container>
+    <app-carrito-summary [subtotal]="g.subtotal" [shipping]="shipping" [itemsCount]="g.itemCount"></app-carrito-summary>
+    <hr />
+  </ng-container>
+</div>

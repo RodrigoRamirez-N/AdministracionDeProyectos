@@ -1,0 +1,87 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  padding: 0;
+  border-radius: 12px;
+  /* width: 369px; <-- ¡BORRA O COMENTA ESTA LÍNEA! */
+  width: 100%; /* ¡O REEMPLÁZALA POR ESTA! */
+  height: 110px; 
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.card-imagen {
+  height: 100%; /* Alto de la imagen de Figma */
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 0; /* La imagen no tiene bordes redondeados en Figma */
+  margin-right: 12px; /* Espacio entre imagen e info (de Figma) */
+  flex-shrink: 0; 
+}
+
+.card-info {
+  flex-grow: 1; /* Ocupa el espacio del medio */
+  display: flex;
+  flex-direction: column; /* Pone info-titulo, lugar, precio en columna */
+  justify-content: center; /* Centra verticalmente la info */
+  margin-right: 8px; /* Espacio antes de los likes/boton */
+  padding: 8px;
+}
+
+.info-titulo {
+  font-size: 1.1rem; /* Aproximado de 16px de Figma */
+  font-weight: 700; /* Bold */
+  margin: 0 0 4px 0;
+  color: #000000; /* Color de Figma */
+}
+
+.info-lugar {
+  font-size: 0.9rem; /* Aproximado de 14px de Figma */
+  color: #718096; /* Gris */
+  margin: 0 0 8px 0;
+}
+
+.info-precio {
+  font-size: 1rem; /* Aproximado de 16px de Figma */
+  font-weight: 700; /* Bold */
+  color: #38a169; /* Verde */
+  margin: 0;
+}
+
+.card-accion {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-end; 
+  justify-content: space-between;
+  align-self: stretch; /* Estira esta columna */
+  padding: 8px;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.icon-heart {
+  font-size: 1.3rem; 
+  margin-left: 4px;
+  color: #a0aec0; /* Color gris */
+}
+
+.boton-mas {
+  display: flex;
+  border: none;
+  background-color: #e53e3e; /* Rojo */
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem; 
+  width: 32px;
+  height: 32px;
+  border-radius: 8px; /* Cuadrado redondeado */
+  cursor: pointer;
+  justify-content: center;
+  align-items: end;
+}

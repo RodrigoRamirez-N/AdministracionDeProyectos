@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ProductCard } from '../../components/product-card/product-card'; 
 
 @Component({
   selector: 'app-menu-food-mobile',
   standalone: true,
-  imports: [],
+  imports: [
+    ProductCard, 
+    RouterModule
+  ],
   templateUrl: './menu-food-mobile.html',
-  styleUrl: './menu-food-mobile.css'
+  styleUrls: ['./menu-food-mobile.css'] 
 })
+
 export class MenuFoodMobile {
 
 }
