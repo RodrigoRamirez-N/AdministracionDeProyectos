@@ -1,21 +1,44 @@
 <div class="summary-card">
-  <div class="summary-fila">
-    <span>Artículos</span>
-    <span class="precio-verde">{{ itemsCount }}</span>
+  
+  <div class="delivery-options">
+    <p class="delivery-title">¿Cómo quieres tu pedido?</p>
+    
+    <div 
+      class="delivery-option" 
+      [class.active]="deliveryType === 'pickup'"
+      (click)="setDeliveryType('pickup')">
+      <span>🏪 Recoger en Tienda</span>
+      <span class="option-price">Gratis</span>
+    </div>
+
+    <div 
+      class="delivery-option" 
+      [class.active]="deliveryType === 'delivery'"
+      (click)="setDeliveryType('delivery')">
+      <span>🛵 A domicilio</span>
+      <span class="option-price">25 MXN</span>
+    </div>
   </div>
+
+  <div class="divider"></div>
+
   <div class="summary-fila">
-    <span>Subtotal</span>
-    <span class="precio-verde">{{ subtotal | number:'1.2-2' }} MXN</span>
+    <span>Artículos ({{ displayCount }})</span>
+    <span class="precio-verde">{{ displaySubtotal }} MXN</span>
   </div>
+
   <div class="summary-fila">
     <span>Costo de envío</span>
-    <span class="precio-verde">{{ shipping | number:'1.2-2' }} MXN</span>
+    <span class="precio-verde">{{ shipping }} MXN</span>
   </div>
+
   <div class="summary-fila total">
     <strong>Total</strong>
-    <strong class="precio-verde">{{ total | number:'1.2-2' }} MXN</strong>
+    <strong class="precio-verde">{{ displayTotal }} MXN</strong>
   </div>
+
 </div>
+
 <div class="contenedor-boton-pagar">
-  <button class="boton-pagar" type="button">Finalizar Pedido</button>
+  <button class="boton-pagar" (click)="onCheckout()">Finalizar Pedido</button>
 </div>

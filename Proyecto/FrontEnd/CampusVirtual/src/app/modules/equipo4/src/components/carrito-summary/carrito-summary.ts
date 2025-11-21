@@ -1,16 +1,54 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Product } from '../product-card/product.model';
 
 @Component({
   selector: 'app-carrito-summary',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './carrito-summary.html',
-  styleUrl: './carrito-summary.css'
+  styleUrls: ['./carrito-summary.css']
 })
 export class CarritoSummary {
+  @Input() items: Product[] = [];
   @Input() subtotal: number = 0;
-  @Input() shipping: number = 25;
   @Input() itemsCount: number = 0;
-  get total(): number { return this.subtotal + this.shipping; }
+  
+  // ¡RECUPERAMOS ESTO PARA QUE DESKTOP NO FALLE!
+  @Input() shipping: number = 25; 
+
+  @Output() checkout = new EventEmitter<string>();
+
+  deliveryType: 'delivery' | 'pickup' = 'delivery'; 
+
+  // --- CÁLCULOS ---
+  
+  get displayCount(): number {
+    return this.items.length > 0 ? this.items.length : this.itemsCount;
+  }
+
+  get displaySubtotal(): number {
+    if (this.items.length > 0) {
+      return this.items.reduce((suma, item) => suma + (item.price * (item.quantity || 1)), 0);
+    }
+    return this.subtotal;
+  }
+
+  // Ya no necesitamos 'currentShipping', usamos 'shipping' directo
+  
+  get displayTotal(): number {
+    // Sumamos el subtotal + el envío (que puede ser input o calculado)
+    return this.displaySubtotal + this.shipping;
+  }
+
+  // --- LÓGICA DEL SELECTOR (MOBILE) ---
+  setDeliveryType(type: 'delivery' | 'pickup') {
+    this.deliveryType = type;
+    // Si cambiamos la opción, actualizamos el precio del envío manualmente
+    this.shipping = type === 'delivery' ? 25 : 0;
+  }
+
+  onCheckout() {
+    this.checkout.emit(this.deliveryType);
+  }
 }

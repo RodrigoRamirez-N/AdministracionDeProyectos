@@ -1,13 +1,19 @@
 <div class="item-card">
-  <img class="item-imagen" [src]="imageUrl" [alt]="title">
+  <img class="item-imagen" 
+       [src]="product?.image_url || product?.image || imageUrl" 
+       [alt]="product?.name || title">
+
   <div class="item-info">
-    <h4 class="item-nombre">{{ title }}</h4>
-    <p class="item-precio">{{ price | number:'1.2-2' }} MXN</p>
-    <button type="button" class="boton-eliminar" (click)="onRemove()">Eliminar</button>
+    <h4 class="item-nombre">{{ product?.name || title }}</h4>
+    
+    <p class="item-precio">{{ product?.price || price }} MXN</p>
+    
+    <a class="eliminar-link" (click)="eliminar()">Eliminar</a>
   </div>
+
   <div class="item-cantidad">
-    <button class="boton-menos" type="button" (click)="onMinus()" [disabled]="quantity <= 1">-</button>
-    <span>{{ quantity }}</span>
-    <button class="boton-mas" type="button" (click)="onPlus()">+</button>
+    <button class="boton-menos" (click)="disminuir()">-</button>
+    <span>{{ product?.quantity || quantity }}</span>
+    <button class="boton-mas" (click)="aumentar()">+</button>
   </div>
 </div>

@@ -49,3 +49,87 @@
   border-radius: 12px;
   cursor: pointer;
 }
+.summary-card {
+  background-color: white;
+  margin: 16px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- ESTILOS NUEVOS PARA EL SELECTOR --- */
+.delivery-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #2d3748;
+}
+
+.delivery-option {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Cuando la opción está seleccionada */
+.delivery-option.active {
+  border-color: #e53e3e; /* Rojo */
+  background-color: #fff5f5; /* Rojo muy clarito */
+  color: #e53e3e;
+  font-weight: bold;
+}
+
+.option-price {
+  font-weight: bold;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 16px 0;
+}
+/* --------------------------------------- */
+
+.summary-fila {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 12px;
+}
+
+.summary-fila.total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin-top: 4px;
+}
+
+.precio-verde {
+  font-weight: bold;
+  color: #38a169;
+}
+
+.contenedor-boton-pagar {
+  padding: 16px;
+  position: sticky;
+  bottom: 0;
+  background-color: #f7fafc;
+}
+
+.boton-pagar {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #e53e3e;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
