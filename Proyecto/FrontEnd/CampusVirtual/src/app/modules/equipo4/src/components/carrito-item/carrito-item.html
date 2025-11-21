@@ -1,12 +1,12 @@
 <div class="item-card">
   <img class="item-imagen" 
-       [src]="product?.image || imageUrl" 
+       [src]="product?.image_url || product?.image || imageUrl" 
        [alt]="product?.name || title">
 
   <div class="item-info">
     <h4 class="item-nombre">{{ product?.name || title }}</h4>
     
-     <p class="item-precio">{{ product?.price || price }} MXN</p>
+    <p class="item-precio">{{ product?.price || price }} MXN</p>
     
     <a class="eliminar-link" (click)="eliminar()">Eliminar</a>
   </div>

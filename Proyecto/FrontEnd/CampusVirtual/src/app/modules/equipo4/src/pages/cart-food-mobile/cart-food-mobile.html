@@ -6,6 +6,6 @@
 <app-carrito-item 
   *ngFor="let item of cartItems" 
   [product]="item"
-  (remove)="borrarItem(item)"> </app-carrito-item>
+  (change)="actualizarCarrito()"> </app-carrito-item>
 
 <app-carrito-summary [items]="cartItems"></app-carrito-summary>

@@ -1,17 +1,16 @@
-<div class="card">
-  <img class="card-imagen" src="https://www.cnature.es/wp-content/uploads/2021/12/hamburguesa-con-guacamole.jpg" alt="Hamburguesa">
-
-<div class="card-info">
-    <h4 class="info-titulo">{{ product.name }}</h4>
-    <p class="info-lugar">{{ product.place }}</p>
-    <p class="info-precio">{{ product.price }} MXN</p>
+<div class="card" *ngIf="food">
+  <img class="card-imagen" [src]="food.image_url || 'assets/images/Recetas-de-Hamburguesa.jpg'" [alt]="food.name">
+  
+  <div class="card-info">
+    <h4 class="info-titulo">{{ food.name }}</h4>
+    <p class="info-lugar">Cafetería El Punto</p> <p class="info-precio">{{ food.price }} MXN</p>
   </div>
-
+  
   <div class="card-accion">
     <div class="likes">
-      <span>{{ product.likes }}</span>
+      <span>{{ food.rating || 0 }}</span>
       <span class="icon-heart">🤍</span> 
     </div>
-    <button class="boton-mas" (click)="agregarAlCarrito()">+</button>
+    <button class="boton-mas" (click)="addToCart()">+</button>
   </div>
 </div>
