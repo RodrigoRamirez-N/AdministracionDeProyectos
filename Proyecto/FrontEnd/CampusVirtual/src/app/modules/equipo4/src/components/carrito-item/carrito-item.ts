@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product-card/product.model';
 
@@ -10,13 +10,49 @@ import { Product } from '../product-card/product.model';
   styleUrls: ['./carrito-item.css']
 })
 export class CarritoItem {
-  // --- TU FORMA (MOBILE) ---
+  // MODO MOBILE 
   @Input() product: Product | undefined;
 
-  // --- LA FORMA DE TU COMPAÑERO (DESKTOP) ---
-  // Agregamos esto para que su código no falle
+  // MODO DESKTOP 
   @Input() title: string = '';
   @Input() price: number = 0;
   @Input() quantity: number = 1;
   @Input() imageUrl: string = '';
+
+  @Output() remove = new EventEmitter<void>(); 
+
+  // --- FUNCIONES PARA LOS BOTONES ---
+
+  aumentar() {
+    // Si estamos en modo Mobile (tenemos product)
+    if (this.product) {
+      if (this.product.quantity) {
+        this.product.quantity++;
+      } else {
+        this.product.quantity = 1;
+      }
+    } else {
+      // Si estamos en modo Desktop
+      this.quantity++;
+    }
+  }
+
+  disminuir() {
+    // Si estamos en modo Mobile
+    if (this.product) {
+      if (this.product.quantity && this.product.quantity > 1) {
+        this.product.quantity--;
+      }
+    } else {
+      // Si estamos en modo Desktop
+      if (this.quantity > 1) {
+        this.quantity--;
+      }
+    }
+  }
+
+ 
+  eliminar() {
+    this.remove.emit(); 
+  }
 }

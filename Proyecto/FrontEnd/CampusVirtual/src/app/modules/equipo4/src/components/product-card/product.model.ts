@@ -5,4 +5,5 @@ export interface Product {
   price: number;
   image: string;
   likes: number;
+  quantity?: number;
 }
