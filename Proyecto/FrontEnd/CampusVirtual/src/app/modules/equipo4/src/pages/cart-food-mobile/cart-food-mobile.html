@@ -3,6 +3,9 @@
   <h1>Mi Carrito</h1>
 </div>
 
-<app-carrito-item></app-carrito-item>
-<app-carrito-item></app-carrito-item>
+<app-carrito-item 
+  *ngFor="let item of cartItems" 
+  [product]="item">
+</app-carrito-item>
+
 <app-carrito-summary></app-carrito-summary>

@@ -2,16 +2,16 @@
   <img class="card-imagen" src="https://www.cnature.es/wp-content/uploads/2021/12/hamburguesa-con-guacamole.jpg" alt="Hamburguesa">
 
 <div class="card-info">
-    <h4 class="info-titulo">Tipo de comida</h4>
-    <p class="info-lugar">Lugar de comida</p>
-    <p class="info-precio">100 MXN</p>
+    <h4 class="info-titulo">{{ product.name }}</h4>
+    <p class="info-lugar">{{ product.place }}</p>
+    <p class="info-precio">{{ product.price }} MXN</p>
   </div>
 
   <div class="card-accion">
     <div class="likes">
-      <span>43</span>
+      <span>{{ product.likes }}</span>
       <span class="icon-heart">🤍</span> 
     </div>
-    <button class="boton-mas">+</button>
+    <button class="boton-mas" (click)="agregarAlCarrito()">+</button>
   </div>
 </div>
