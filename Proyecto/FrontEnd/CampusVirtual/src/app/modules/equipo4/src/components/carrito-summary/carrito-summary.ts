@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product-card/product.model';
 
@@ -10,33 +10,45 @@ import { Product } from '../product-card/product.model';
   styleUrls: ['./carrito-summary.css']
 })
 export class CarritoSummary {
-  // --- MODO MOBILE (Lista de productos) ---
   @Input() items: Product[] = [];
-
-  // --- MODO DESKTOP (Valores directos) ---
   @Input() subtotal: number = 0;
-  @Input() shipping: number = 25; // Valor por defecto
   @Input() itemsCount: number = 0;
-
-  // --- CÁLCULOS INTELIGENTES ---
   
-  // 1. Calcula cuántos items hay (usando la lista O el número directo)
+  // ¡RECUPERAMOS ESTO PARA QUE DESKTOP NO FALLE!
+  @Input() shipping: number = 25; 
+
+  @Output() checkout = new EventEmitter<string>();
+
+  deliveryType: 'delivery' | 'pickup' = 'delivery'; 
+
+  // --- CÁLCULOS ---
+  
   get displayCount(): number {
     return this.items.length > 0 ? this.items.length : this.itemsCount;
   }
 
-  // 2. Calcula el subtotal (sumando la lista O usando el valor directo)
-
   get displaySubtotal(): number {
     if (this.items.length > 0) {
-      // AHORA MULTIPLICAMOS EL PRECIO POR LA CANTIDAD
       return this.items.reduce((suma, item) => suma + (item.price * (item.quantity || 1)), 0);
     }
     return this.subtotal;
   }
+
+  // Ya no necesitamos 'currentShipping', usamos 'shipping' directo
   
-  // 3. Calcula el total final
   get displayTotal(): number {
+    // Sumamos el subtotal + el envío (que puede ser input o calculado)
     return this.displaySubtotal + this.shipping;
+  }
+
+  // --- LÓGICA DEL SELECTOR (MOBILE) ---
+  setDeliveryType(type: 'delivery' | 'pickup') {
+    this.deliveryType = type;
+    // Si cambiamos la opción, actualizamos el precio del envío manualmente
+    this.shipping = type === 'delivery' ? 25 : 0;
+  }
+
+  onCheckout() {
+    this.checkout.emit(this.deliveryType);
   }
 }

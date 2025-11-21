@@ -9,7 +9,7 @@
 </div>
 
 <div class="cafe-banner">
-  <img class="cafe-imagen" src="https://www.cnature.es/wp-content/uploads/2021/12/hamburguesa-con-guacamole.jpg" alt="Cafetería">
+  <img class="cafe-imagen" src="assets/images/Recetas-de-Hamburguesa.jpg" alt="Cafetería">
   <h2 class="cafe-nombre">cafetería</h2>
   <p class="cafe-horario">Horario: 8:10 - 21:10</p>
 </div>
@@ -23,7 +23,7 @@
 </div>
 
 <a routerLink="/equipo4/carrito" class="fab-carrito">
-<img src="assets/images/icono_cesta.jpg" alt="Carrito">
+  <span style="font-size: 24px;">🛒</span>
   <span class="badge-contador" *ngIf="cartCount > 0">{{ cartCount }}</span>
 </a>
 
@@ -40,8 +40,9 @@
     <span>☕</span>
     <span>Comida</span>
   </div>
-  <div class="nav-item">
-    <span>🍴</span>
-    <span>Comida</span>
-  </div>
-  </div>
+  
+  <a routerLink="/equipo4/pedidos" class="nav-item">
+    <span>📦</span>
+    <span>Pedidos</span>
+  </a>
+</div>

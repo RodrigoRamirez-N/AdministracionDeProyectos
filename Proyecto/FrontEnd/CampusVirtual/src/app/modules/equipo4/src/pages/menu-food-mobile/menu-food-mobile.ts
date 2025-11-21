@@ -13,7 +13,7 @@ import { Equipo4ApiService, FoodItem } from '../../services/equipo4-api.service'
 })
 export class MenuFoodMobile implements OnInit {
   
-  // 1. LLENAMOS ESTO MANUALMENTE PARA QUE SE VEA LA COMIDA
+  // ✅ AQUÍ VA LA COMIDA (Hamburguesas), NO LOS PEDIDOS
   foods: FoodItem[] = [
     {
       id: 1,
@@ -40,7 +40,7 @@ export class MenuFoodMobile implements OnInit {
       description: 'El Punto',
       price: '60',
       rating: 4,
-      image_url: 'assets/images/papas_francesa.jpg'
+      image_url: 'assets/images/Recetas-de-Hamburguesa.jpg'
     }
   ];
 
@@ -49,12 +49,12 @@ export class MenuFoodMobile implements OnInit {
   constructor(private apiService: Equipo4ApiService) {}
 
   ngOnInit() {
-    // Intentamos cargar del servicio, pero si falla, ya tenemos los datos de arriba
+    // Intentar cargar comida real
     this.apiService.getFoods().subscribe({
       next: (data) => {
-        if (data.length > 0) this.foods = data; // Solo reemplaza si hay datos reales
+        if (data && data.length > 0) this.foods = data;
       },
-      error: (err) => console.log('Usando datos de prueba por falta de backend')
+      error: () => console.log('Usando comida de prueba')
     });
 
     this.updateCartCount();

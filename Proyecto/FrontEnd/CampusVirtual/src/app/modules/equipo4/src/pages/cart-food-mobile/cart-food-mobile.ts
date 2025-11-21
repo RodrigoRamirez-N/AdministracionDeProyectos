@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CarritoItem } from '../../components/carrito-item/carrito-item';
 import { CarritoSummary } from '../../components/carrito-summary/carrito-summary';
+import { CartService } from '../../services/cart.service.';
+
+
 
 @Component({
   selector: 'app-cart-food-mobile',
@@ -18,24 +21,40 @@ import { CarritoSummary } from '../../components/carrito-summary/carrito-summary
 })
 export class CartFoodMobile implements OnInit {
   
-  cartItems: any[] = []; // Usamos 'any' para facilitar la transición
+  cartItems: any[] = [];
 
-  constructor() {}
+  constructor(
+    private cartService: CartService, // Ahora sí sabrá qué es esto
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadCart();
-    // Escuchar cambios si abres otra pestaña
     window.addEventListener('storage', () => this.loadCart());
   }
 
   loadCart() {
-    // LEER DE LA MEMORIA DEL NAVEGADOR
-    const data = localStorage.getItem('equipo4_cart_items');
-    this.cartItems = data ? JSON.parse(data) : [];
+    this.cartItems = this.cartService.getItems();
   }
 
-  // Función para recibir la orden de borrar desde el hijo
   actualizarCarrito() {
-    this.loadCart(); // Recarga la lista desde la memoria
+    this.loadCart();
   }
+
+
+  // Debe recibir 'tipo' (o el nombre que quieras)
+  finalizarPedido(tipo: string) { 
+    if (this.cartItems.length === 0) {
+      alert('Tu carrito está vacío');
+      return;
+    }
+
+    // ¡IMPORTANTE! Debes pasarle ese 'tipo' al servicio
+    this.cartService.checkout(tipo); 
+    
+    alert('¡Pedido realizado con éxito!');
+    this.router.navigate(['/equipo4/pedidos']);
+  }
+  
+  
 }

@@ -1,12 +1,34 @@
 <div class="summary-card">
   
+  <div class="delivery-options">
+    <p class="delivery-title">¿Cómo quieres tu pedido?</p>
+    
+    <div 
+      class="delivery-option" 
+      [class.active]="deliveryType === 'pickup'"
+      (click)="setDeliveryType('pickup')">
+      <span>🏪 Recoger en Tienda</span>
+      <span class="option-price">Gratis</span>
+    </div>
+
+    <div 
+      class="delivery-option" 
+      [class.active]="deliveryType === 'delivery'"
+      (click)="setDeliveryType('delivery')">
+      <span>🛵 A domicilio</span>
+      <span class="option-price">25 MXN</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <div class="summary-fila">
     <span>Artículos ({{ displayCount }})</span>
     <span class="precio-verde">{{ displaySubtotal }} MXN</span>
   </div>
 
   <div class="summary-fila">
-    <span>Costo de envio</span>
+    <span>Costo de envío</span>
     <span class="precio-verde">{{ shipping }} MXN</span>
   </div>
 
@@ -18,5 +40,5 @@
 </div>
 
 <div class="contenedor-boton-pagar">
-  <button class="boton-pagar">Finalizar Pedido</button>
+  <button class="boton-pagar" (click)="onCheckout()">Finalizar Pedido</button>
 </div>

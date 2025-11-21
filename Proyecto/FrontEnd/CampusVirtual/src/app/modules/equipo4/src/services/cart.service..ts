@@ -1,45 +1,76 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../components/product-card/product.model'; // Asegúrate que esta ruta sea correcta
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private items: Product[] = [];
+  // La clave donde guardamos todo en el navegador
+  private key = 'equipo4_cart_items';
 
   constructor() { }
 
- 
-
-  addToCart(product: Product) {
-    // Buscamos si el producto YA existe en el carrito
-    const existingProduct = this.items.find(item => item.id === product.id);
-
-    if (existingProduct) {
-      // Si ya existe, solo le sumamos 1 a la cantidad
-      if (existingProduct.quantity) {
-        existingProduct.quantity++;
-      }
-    } else {
-      // Si es nuevo, le ponemos cantidad 1 y lo agregamos
-      product.quantity = 1;
-      this.items.push(product);
-    }
-  }
-
+  // 1. LEER
   getItems() {
-    return this.items;
+    const data = localStorage.getItem(this.key);
+    return data ? JSON.parse(data) : [];
   }
 
-  clearCart() {
-    this.items = [];
-    return this.items;
-  }
-  // ... dentro de la clase CartService
+  // 2. AGREGAR
+  addToCart(product: any) {
+    const items = this.getItems();
+    const existing = items.find((i: any) => i.id === product.id);
 
-  // Función para eliminar un producto por su ID
-  removeItem(productId: number) {
-    // Filtramos la lista para quedarnos con todos MENOS el que queremos borrar
-    this.items = this.items.filter(item => item.id !== productId);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+      const newProduct = { ...product, quantity: 1 };
+      items.push(newProduct);
+    }
+    
+    this.save(items);
+  }
+
+  // 3. BORRAR UN ITEM
+  removeItem(id: number) {
+    let items = this.getItems();
+    items = items.filter((i: any) => i.id !== id);
+    this.save(items);
+  }
+
+  // 4. CHECKOUT (¡AHORA SÍ RECIBE EL TIPO DE ENTREGA!)
+  checkout(deliveryType: string = 'Para llevar') {
+    const items = this.getItems();
+    if (items.length === 0) return;
+
+    // Lógica para el texto bonito
+    let textoTipo = 'Para llevar';
+    if (deliveryType === 'delivery') {
+      textoTipo = 'A domicilio';
+    } else if (deliveryType === 'pickup') {
+      textoTipo = 'Recoger en tienda';
+    }
+
+    // Guardar en el historial de "Mis Pedidos"
+    const orders = JSON.parse(localStorage.getItem('equipo4_orders') || '[]');
+    
+    orders.push({
+      id: Math.floor(Math.random() * 10000),
+      type: textoTipo, // <--- Usamos el texto dinámico
+      status: 'pending',
+      created_at: new Date().toLocaleString(),
+      items: items,
+      // Calculamos el total + envío si aplica
+      total: items.reduce((sum: number, i: any) => sum + (Number(i.price) * (i.quantity || 1)), 0) + (deliveryType === 'delivery' ? 25 : 0)
+    });
+
+    localStorage.setItem('equipo4_orders', JSON.stringify(orders));
+
+    // Limpiar el carrito
+    localStorage.removeItem(this.key);
+  }
+
+  // Función auxiliar para guardar
+  private save(items: any[]) {
+    localStorage.setItem(this.key, JSON.stringify(items));
   }
 }
