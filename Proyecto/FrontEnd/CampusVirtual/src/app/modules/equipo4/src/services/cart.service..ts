@@ -10,12 +10,19 @@ export class CartService {
   constructor() { }
 
   // 1. LEER
+
   getItems() {
     const data = localStorage.getItem(this.key);
-    return data ? JSON.parse(data) : [];
+    try {
+      const parsed = data ? JSON.parse(data) : [];
+      // VERIFICACIÓN DE SEGURIDAD: ¿Es realmente un array?
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      // Si el JSON está roto, devolvemos array vacío y no rompemos nada
+      return [];
+    }
   }
-
-  // 2. AGREGAR
+ 
   addToCart(product: any) {
     const items = this.getItems();
     const existing = items.find((i: any) => i.id === product.id);

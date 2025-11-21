@@ -3,20 +3,40 @@
 </div>
 
 <div class="filter-buttons">
-  <button class="filter-button">Todos</button>
-  <button class="filter-button active">El Punto</button>
-  <button class="filter-button">Facultad de Sistemas</button>
+  <button class="filter-button" 
+          [class.active]="selectedCategory === 0" 
+          (click)="filterFoods(0)">
+    Todos
+  </button>
+
+  <button class="filter-button" 
+          [class.active]="selectedCategory === 1" 
+          (click)="filterFoods(1)">
+    El Punto
+  </button>
+
+  <button class="filter-button" 
+          [class.active]="selectedCategory === 2" 
+          (click)="filterFoods(2)">
+    Facultad de Sistemas
+  </button>
+
+  <button class="filter-button" 
+          [class.active]="selectedCategory === 3" 
+          (click)="filterFoods(3)">
+    Facultad de Música
+  </button>
 </div>
 
 <div class="cafe-banner">
-  <img class="cafe-imagen" src="assets/images/Recetas-de-Hamburguesa.jpg" alt="Cafetería">
+  <img class="cafe-imagen" src="assets/images/Foto cafeteria.png" alt="Cafetería">
   <h2 class="cafe-nombre">cafetería</h2>
   <p class="cafe-horario">Horario: 8:10 - 21:10</p>
 </div>
 
 <div class="product-list">
   <app-product-card 
-    *ngFor="let item of foods" 
+    *ngFor="let item of displayedFoods" 
     [food]="item" 
     (added)="updateCartCount()"> 
   </app-product-card>
