@@ -28,15 +28,6 @@ export class OrdersPageMobile implements OnInit {
   toggleDetails(order: any) { order.showDetails = !order.showDetails; }
 
   ngOnInit() {
-    const localOrdersRaw = JSON.parse(localStorage.getItem('equipo4_orders') || '[]');
-    const localOrders: ExtendedOrder[] = localOrdersRaw.map((o: any) => ({
-      ...o,
-      food_stand_id: o.food_stand_id ?? 0,
-      payment_method_id: o.payment_method_id ?? 0,
-      instructions: o.instructions ?? '',
-      standName: o.items && o.items.length ? (o.items[0].standName || 'Puesto') : 'Puesto'
-    }));
-
     this.apiService.getOrders().subscribe({
       next: (apiOrdersRaw) => {
         // Paralelo: stands, foods, order-items para enriquecer
@@ -74,7 +65,7 @@ export class OrdersPageMobile implements OnInit {
               };
             });
 
-            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
+            this.orders = apiOrders.filter((o: ExtendedOrder) => o && o.status !== 'completed');
             this.isLoading = false;
           },
           error: (err) => {
@@ -87,25 +78,14 @@ export class OrdersPageMobile implements OnInit {
               instructions: o.instructions ?? '',
               standName: 'Puesto'
             }));
-            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
+            this.orders = apiOrders.filter((o: ExtendedOrder) => o && o.status !== 'completed');
             this.isLoading = false;
           }
         });
       },
       error: (err) => {
         console.error('Error trayendo órdenes API, solo locales', err);
-        this.orders = localOrders.reverse().filter((o: ExtendedOrder) => o && o.status !== 'completed');
-        if (this.orders.length === 0) {
-          this.orders = [{
-            id: 999,
-            food_stand_id: 0,
-            payment_method_id: 0,
-            type: 'Ejemplo API Caída',
-            instructions: '',
-            status: 'cancelled',
-            created_at: 'Hoy'
-          }];
-        }
+        this.orders = [];
         this.isLoading = false;
       }
     });

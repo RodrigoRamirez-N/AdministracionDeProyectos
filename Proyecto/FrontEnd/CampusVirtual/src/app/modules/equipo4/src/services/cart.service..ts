@@ -68,33 +68,10 @@ export class CartService {
 
   // 4. CHECKOUT (¡AHORA SÍ RECIBE EL TIPO DE ENTREGA!)
   checkout(deliveryType: string = 'Para llevar') {
+    // En modo sin mocks no persistimos órdenes locales.
     const items = this.getItems();
     if (items.length === 0) return;
-
-    // Lógica para el texto bonito
-    let textoTipo = 'Para llevar';
-    if (deliveryType === 'delivery') {
-      textoTipo = 'A domicilio';
-    } else if (deliveryType === 'pickup') {
-      textoTipo = 'Recoger en tienda';
-    }
-
-    // Guardar en el historial de "Mis Pedidos"
-    const orders = JSON.parse(localStorage.getItem('equipo4_orders') || '[]');
-    
-    orders.push({
-      id: Math.floor(Math.random() * 10000),
-      type: textoTipo, // <--- Usamos el texto dinámico
-      status: 'pending',
-      created_at: new Date().toLocaleString(),
-      items: items,
-      // Calculamos el total + envío si aplica
-      total: items.reduce((sum: number, i: any) => sum + (Number(i.price) * (i.quantity || 1)), 0) + (deliveryType === 'delivery' ? 25 : 0)
-    });
-
-    localStorage.setItem('equipo4_orders', JSON.stringify(orders));
-
-    // Limpiar el carrito
+    // Sólo limpiamos el carrito tras un checkout hipotético.
     localStorage.removeItem(this.key);
   }
 

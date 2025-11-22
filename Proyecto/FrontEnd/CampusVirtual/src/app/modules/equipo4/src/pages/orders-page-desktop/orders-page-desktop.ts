@@ -29,15 +29,6 @@ export class OrdersPageDesktop implements OnInit {
 
   ngOnInit() {
     console.debug('[OrdersDesktop] init');
-    const localOrdersRaw = JSON.parse(localStorage.getItem('equipo4_orders') || '[]');
-    const localOrders: ExtendedOrder[] = localOrdersRaw.map((o: any) => ({
-      ...o,
-      food_stand_id: o.food_stand_id ?? 0,
-      payment_method_id: o.payment_method_id ?? 0,
-      instructions: o.instructions ?? '',
-      standName: o.items && o.items.length ? (o.items[0].standName || 'Puesto') : 'Puesto'
-    }));
-
     this.apiService.getOrders().subscribe({
       next: (apiOrdersRaw) => {
         forkJoin({
@@ -72,7 +63,7 @@ export class OrdersPageDesktop implements OnInit {
                 standName: standsMap.get(Number(o.food_stand_id)) || 'Puesto'
               };
             });
-            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
+            this.orders = apiOrders.filter((o: ExtendedOrder) => o && o.status !== 'completed');
             console.debug('[OrdersDesktop] loaded orders', this.orders.length);
             this.isLoading = false;
           },
@@ -85,7 +76,7 @@ export class OrdersPageDesktop implements OnInit {
               instructions: o.instructions ?? '',
               standName: 'Puesto'
             }));
-            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
+            this.orders = apiOrders.filter((o: ExtendedOrder) => o && o.status !== 'completed');
             console.debug('[OrdersDesktop] fallback orders', this.orders.length);
             this.isLoading = false;
           }
@@ -93,18 +84,7 @@ export class OrdersPageDesktop implements OnInit {
       },
       error: (err) => {
         console.error('Error trayendo órdenes API (desktop), solo locales', err);
-        this.orders = localOrders.reverse().filter((o: ExtendedOrder) => o && o.status !== 'completed');
-        if (this.orders.length === 0) {
-          this.orders = [{
-            id: 999,
-            food_stand_id: 0,
-            payment_method_id: 0,
-            type: 'Ejemplo API Caída',
-            instructions: '',
-            status: 'cancelled',
-            created_at: 'Hoy'
-          }];
-        }
+        this.orders = [];
         console.debug('[OrdersDesktop] local only orders', this.orders.length);
         this.isLoading = false;
       }
