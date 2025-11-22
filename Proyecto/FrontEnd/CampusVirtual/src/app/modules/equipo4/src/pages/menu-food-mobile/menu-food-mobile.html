@@ -1,15 +1,9 @@
-<div class="top-bar">
-  <input class="search-bar" type="text" placeholder="Buscar...">
-</div>
-
 <div class="filter-buttons">
-  <button class="filter-button"
-          *ngFor="let s of standFilters"
-          [class.active]="selectedCategory === s.id"
-          (click)="filterFoods(s.id)">
+  <button class="filter-button" *ngFor="let s of standFilters" [class.active]="selectedCategory === s.id"
+    (click)="filterFoods(s.id)">
     {{ s.name }}
   </button>
-  
+
 </div>
 
 <div class="cafe-banner">
@@ -19,10 +13,7 @@
 </div>
 
 <div class="product-list">
-  <app-product-card 
-    *ngFor="let item of displayedFoods" 
-    [food]="item" 
-    (added)="updateCartCount()"> 
+  <app-product-card *ngFor="let item of displayedFoods" [food]="item" (added)="updateCartCount()">
   </app-product-card>
 </div>
 
@@ -34,21 +25,16 @@
 <a *ngIf="hasOrders" routerLink="/equipo4/pedidos" class="btn-pedidos-mobile">Pedidos</a>
 
 <div class="bottom-nav">
-  <div class="nav-item">
-    <span>🍕</span>
-    <span>Comida</span>
-  </div>
-  <div class="nav-item">
-    <span>🍴</span>
-    <span>Comida</span>
-  </div>
-  <div class="nav-item active">
-    <span>☕</span>
-    <span>Comida</span>
-  </div>
-  
-  <a routerLink="/equipo4/pedidos" class="nav-item">
-    <span>📦</span>
-    <span>Pedidos</span>
+  <a routerLink="/equipo1" class="nav-item">
+    <span>Equipo 1</span>
+  </a>
+  <a routerLink="/equipo2" class="nav-item">
+    <span>Equipo 2</span>
+  </a>
+  <a routerLink="/equipo3" class="nav-item">
+    <span>Equipo 3</span>
+  </a>
+  <a routerLink="/equipo4" class="nav-item">
+    <span>Equipo 4</span>
   </a>
 </div>

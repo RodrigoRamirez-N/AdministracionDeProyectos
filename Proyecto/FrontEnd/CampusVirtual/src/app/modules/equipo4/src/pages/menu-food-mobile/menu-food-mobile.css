@@ -206,13 +206,16 @@
   align-items: center;
   font-size: 0.7rem;
   color: #718096;
-  padding: 4px;
+  padding: 4px 10px;
   text-decoration: none;
   cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px rgba(198, 198, 198, 0.567);
+  background-color: #fff;
 }
 
 .nav-item span:first-child {
-  font-size: 1.2rem; /* Tamaño del icono emoji */
+  font-size: 16px; /* Tamaño del icono emoji */
   margin-bottom: 4px;
 }
 

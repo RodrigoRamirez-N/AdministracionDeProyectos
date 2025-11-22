@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Equipo4ApiService } from '../../services/equipo4-api.service';
+import { Equipo4ApiService, Order } from '../../services/equipo4-api.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -11,12 +11,19 @@ import { forkJoin } from 'rxjs';
   templateUrl: './orders-page-desktop.html',
   styleUrls: ['./orders-page-desktop.css']
 })
+interface ExtendedOrder extends Order {
+  items?: { food_id: number; quantity: number; name: string; price: number }[];
+  total?: number;
+  standName?: string;
+  showDetails?: boolean;
+}
+
 export class OrdersPageDesktop implements OnInit {
   
-  orders: any[] = [];
+  orders: ExtendedOrder[] = [];
   isLoading: boolean = true;
   completing = false;
-  get hasPending(): boolean { return this.orders.some(o => o && o.status !== 'completed'); }
+  get hasPending(): boolean { return this.orders.some((o: ExtendedOrder) => o && o.status !== 'completed'); }
 
   constructor(private apiService: Equipo4ApiService) {}
 
@@ -62,14 +69,14 @@ export class OrdersPageDesktop implements OnInit {
                 standName: standsMap.get(Number(o.food_stand_id)) || 'Puesto'
               };
             });
-            this.orders = [...localOrders.reverse(), ...apiOrders];
+            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
             console.debug('[OrdersDesktop] loaded orders', this.orders.length);
             this.isLoading = false;
           },
           error: (err) => {
             console.error('Error enriqueciendo órdenes (desktop)', err);
             const apiOrders = (apiOrdersRaw || []).map((o: any) => ({ ...o, standName: 'Puesto' }));
-            this.orders = [...localOrders.reverse(), ...apiOrders];
+            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
             console.debug('[OrdersDesktop] fallback orders', this.orders.length);
             this.isLoading = false;
           }
@@ -77,7 +84,7 @@ export class OrdersPageDesktop implements OnInit {
       },
       error: (err) => {
         console.error('Error trayendo órdenes API (desktop), solo locales', err);
-        this.orders = localOrders.reverse();
+        this.orders = localOrders.reverse().filter((o: ExtendedOrder) => o && o.status !== 'completed');
         if (this.orders.length === 0) {
           this.orders = [{ id: 999, type: 'Ejemplo API Caída', status: 'cancelled', created_at: 'Hoy' }];
         }
@@ -93,7 +100,7 @@ export class OrdersPageDesktop implements OnInit {
 
   async completeAllOrders() {
     if (this.completing) return;
-    const target = this.orders.filter(o => o && o.id && o.status && o.status !== 'completed');
+    const target = this.orders.filter((o: ExtendedOrder) => o && o.id && o.status && o.status !== 'completed');
     if (!target.length) return;
     this.completing = true;
     try {

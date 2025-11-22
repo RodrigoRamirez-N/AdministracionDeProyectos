@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Equipo4ApiService } from '../../services/equipo4-api.service';
+import { Equipo4ApiService, Order } from '../../services/equipo4-api.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -11,8 +11,15 @@ import { forkJoin } from 'rxjs';
   templateUrl: './orders-page-mobile.html',
   styleUrls: ['./orders-page-mobile.css']
 })
+interface ExtendedOrder extends Order {
+  items?: { food_id: number; quantity: number; name: string; price: number }[];
+  total?: number;
+  standName?: string;
+  showDetails?: boolean;
+}
+
 export class OrdersPageMobile implements OnInit {
-  orders: any[] = [];
+  orders: ExtendedOrder[] = [];
   isLoading = true;
   completing = false;
 
@@ -64,7 +71,7 @@ export class OrdersPageMobile implements OnInit {
               };
             });
 
-            this.orders = [...localOrders.reverse(), ...apiOrders];
+            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
             this.isLoading = false;
           },
           error: (err) => {
@@ -74,14 +81,14 @@ export class OrdersPageMobile implements OnInit {
               ...o,
               standName: 'Puesto'
             }));
-            this.orders = [...localOrders.reverse(), ...apiOrders];
+            this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
             this.isLoading = false;
           }
         });
       },
       error: (err) => {
         console.error('Error trayendo órdenes API, solo locales', err);
-        this.orders = localOrders.reverse();
+        this.orders = localOrders.reverse().filter((o: ExtendedOrder) => o && o.status !== 'completed');
         if (this.orders.length === 0) {
           this.orders = [{ id: 999, type: 'Ejemplo API Caída', status: 'cancelled', created_at: 'Hoy' }];
         }
@@ -92,7 +99,7 @@ export class OrdersPageMobile implements OnInit {
 
   async completeAllOrders() {
     if (this.completing) return;
-    const target = this.orders.filter(o => o && o.id && o.status && o.status !== 'completed');
+    const target = this.orders.filter((o: ExtendedOrder) => o && o.id && o.status && o.status !== 'completed');
     if (!target.length) return;
     this.completing = true;
     try {
