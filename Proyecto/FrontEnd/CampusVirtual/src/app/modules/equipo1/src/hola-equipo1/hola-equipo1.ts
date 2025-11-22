@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RutasService, Ruta } from '../../rutas.service';
-=======
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
->>>>>>> 2157604c0a37207a4cfeb10263761fda12cf626c
 
 @Component({
   selector: 'app-hola-equipo1',
@@ -15,52 +10,6 @@ import { Router } from '@angular/router';
   templateUrl: './hola-equipo1.html',
   styleUrl: './hola-equipo1.css'
 })
-<<<<<<< HEAD
-export class HolaEquipo1 implements OnInit {
-
-  rutas: Ruta[] = [];
-  cargando = false;
-  error: string | null = null;
-
-  filtroTipo = '';
-  filtroTexto = '';
-
-  rutaSeleccionada: Ruta | null = null;
-
-  constructor(private rutasService: RutasService) {}
-
-  ngOnInit(): void {
-    this.cargarRutas();
-  }
-
-  cargarRutas(): void {
-    this.cargando = true;
-    this.error = null;
-    this.rutaSeleccionada = null;
-
-    this.rutasService.listar(this.filtroTipo, this.filtroTexto)
-      .subscribe({
-        next: (data) => {
-          this.rutas = data;
-          this.cargando = false;
-        },
-        error: (err) => {
-          console.error(err);
-          this.error = 'No se pudieron cargar las rutas';
-          this.cargando = false;
-        }
-      });
-  }
-
-  verDetalle(ruta: Ruta): void {
-    this.rutaSeleccionada = ruta;
-  }
-
-  limpiarFiltros(): void {
-    this.filtroTipo = '';
-    this.filtroTexto = '';
-    this.cargarRutas();
-=======
 export class HolaEquipo1 {
   constructor(private router: Router) {}
 
@@ -72,6 +21,5 @@ export class HolaEquipo1 {
   }
   btnTransporte(){
     this.router.navigate(['/equipo1/transporte']);
->>>>>>> 2157604c0a37207a4cfeb10263761fda12cf626c
   }
 }

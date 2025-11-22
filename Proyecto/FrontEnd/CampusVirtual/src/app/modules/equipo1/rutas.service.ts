@@ -32,4 +32,14 @@ export class RutasService {
 
   constructor(private http: HttpClient) {}
 
-  listar(tipo?: string, q?: s
+  listar(tipo?: string, q?: string): Observable<Ruta[]> {
+    let params = new HttpParams();
+    if (tipo) params = params.set('tipo', tipo);
+    if (q) params = params.set('q', q);
+    return this.http.get<Ruta[]>(this.baseUrl, { params });
+  }
+
+  detalle(id: string): Observable<Ruta> {
+    return this.http.get<Ruta>(`${this.baseUrl}/${id}`);
+  }
+}
