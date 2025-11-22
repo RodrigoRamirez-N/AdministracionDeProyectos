@@ -83,3 +83,7 @@
   background-color: #fcebeb; /* Fondo rojo clarito */
   color: #e53e3e; /* Texto rojo */
 }
+
+.eliminar-link{
+  cursor: pointer;
+}

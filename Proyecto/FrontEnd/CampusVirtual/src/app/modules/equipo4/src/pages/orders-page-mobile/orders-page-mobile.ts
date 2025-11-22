@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Equipo4ApiService, Order } from '../../services/equipo4-api.service';
+// Tipado extendido de orden enriquecida (mover antes del decorador para no romperlo)
+interface ExtendedOrder extends Order {
+  items?: { food_id: number; quantity: number; name: string; price: number }[];
+  total?: number;
+  standName?: string;
+  showDetails?: boolean;
+}
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -11,13 +18,6 @@ import { forkJoin } from 'rxjs';
   templateUrl: './orders-page-mobile.html',
   styleUrls: ['./orders-page-mobile.css']
 })
-interface ExtendedOrder extends Order {
-  items?: { food_id: number; quantity: number; name: string; price: number }[];
-  total?: number;
-  standName?: string;
-  showDetails?: boolean;
-}
-
 export class OrdersPageMobile implements OnInit {
   orders: ExtendedOrder[] = [];
   isLoading = true;
@@ -29,8 +29,11 @@ export class OrdersPageMobile implements OnInit {
 
   ngOnInit() {
     const localOrdersRaw = JSON.parse(localStorage.getItem('equipo4_orders') || '[]');
-    const localOrders = localOrdersRaw.map((o: any) => ({
+    const localOrders: ExtendedOrder[] = localOrdersRaw.map((o: any) => ({
       ...o,
+      food_stand_id: o.food_stand_id ?? 0,
+      payment_method_id: o.payment_method_id ?? 0,
+      instructions: o.instructions ?? '',
       standName: o.items && o.items.length ? (o.items[0].standName || 'Puesto') : 'Puesto'
     }));
 
@@ -59,7 +62,7 @@ export class OrdersPageMobile implements OnInit {
               if (arr) arr.push(itemDetail); else itemsByOrder.set(oid, [itemDetail]);
             }
 
-            const apiOrders = (apiOrdersRaw || []).map((o: any) => {
+            const apiOrders: ExtendedOrder[] = (apiOrdersRaw || []).map((o: any) => {
               const oid = Number(o.id);
               const items = itemsByOrder.get(oid) || [];
               const total = items.reduce((sum, it) => sum + it.price * it.quantity, 0);
@@ -77,8 +80,11 @@ export class OrdersPageMobile implements OnInit {
           error: (err) => {
             console.error('Error enriqueciendo órdenes', err);
             // Mostrar al menos órdenes crudas
-            const apiOrders = (apiOrdersRaw || []).map((o: any) => ({
+            const apiOrders: ExtendedOrder[] = (apiOrdersRaw || []).map((o: any) => ({
               ...o,
+              food_stand_id: o.food_stand_id ?? 0,
+              payment_method_id: o.payment_method_id ?? 0,
+              instructions: o.instructions ?? '',
               standName: 'Puesto'
             }));
             this.orders = [...localOrders.reverse(), ...apiOrders].filter((o: ExtendedOrder) => o && o.status !== 'completed');
@@ -90,7 +96,15 @@ export class OrdersPageMobile implements OnInit {
         console.error('Error trayendo órdenes API, solo locales', err);
         this.orders = localOrders.reverse().filter((o: ExtendedOrder) => o && o.status !== 'completed');
         if (this.orders.length === 0) {
-          this.orders = [{ id: 999, type: 'Ejemplo API Caída', status: 'cancelled', created_at: 'Hoy' }];
+          this.orders = [{
+            id: 999,
+            food_stand_id: 0,
+            payment_method_id: 0,
+            type: 'Ejemplo API Caída',
+            instructions: '',
+            status: 'cancelled',
+            created_at: 'Hoy'
+          }];
         }
         this.isLoading = false;
       }
