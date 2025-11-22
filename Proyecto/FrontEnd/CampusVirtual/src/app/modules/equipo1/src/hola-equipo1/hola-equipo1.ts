@@ -16,4 +16,7 @@ export class HolaEquipo1 {
   btnGaleria(){
     this.router.navigate(['/equipo1/Galeria']);
   }
+  btnTransporte(){
+    this.router.navigate(['/equipo1/transporte']);
+  }
 }
