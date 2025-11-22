@@ -23,7 +23,7 @@ export interface CreateOrderBody {
 export interface OrderItem { id: number; order_id: number; food_id: number; quantity: number; }
 export interface CreateOrderItemBody { order_id: number; food_id: number; quantity?: number; }
 
-const BASE = '/api/equipo4';
+const BASE = 'http://localhost:8000/api/equipo4';
 
 @Injectable({ providedIn: 'root' })
 export class Equipo4ApiService {
@@ -76,6 +76,38 @@ export class Equipo4ApiService {
   }
   createOrder(body: CreateOrderBody): Observable<Order> {
     return this.http.post<Order>(`${BASE}/orders`, body);
+  }
+  // Actualizar estado con fallback si PATCH no está permitido.
+  updateOrder(orderId: number, partial: Partial<Omit<Order,'id'|'created_at'>>): Promise<Order> {
+    // Intento PATCH primero; si 405 -> intentar PUT con merge completo.
+    return fetch(`${BASE}/orders/${orderId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(partial)
+    }).then(async r => {
+      if (r.ok) return r.json();
+      if (r.status !== 405) {
+        const body = await r.text().catch(()=> '');
+        throw new Error(`PATCH fallo ${r.status} ${body}`);
+      }
+      // Fallback PUT
+      return fetch(`${BASE}/orders/${orderId}`)
+        .then(res => res.ok ? res.json() : Promise.reject(new Error(`GET orden ${orderId} fallo ${res.status}`)))
+        .then(existing => {
+          const merged = { ...existing, ...partial };
+          return fetch(`${BASE}/orders/${orderId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(merged)
+          }).then(async pr => {
+            if (!pr.ok) {
+              const b = await pr.text().catch(()=> '');
+              throw new Error(`PUT fallo ${pr.status} ${b}`);
+            }
+            return pr.json();
+          });
+        });
+    });
   }
 
   // Artículos de la orden

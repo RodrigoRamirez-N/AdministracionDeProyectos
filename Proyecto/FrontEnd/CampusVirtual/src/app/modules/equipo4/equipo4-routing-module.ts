@@ -6,6 +6,7 @@ import { CartFoodDesktop } from './src/pages/cart-food-desktop/cart-food-desktop
 import { CartFoodMobile } from './src/pages/cart-food-mobile/cart-food-mobile'; 
 
 import { OrdersPageMobile } from './src/pages/orders-page-mobile/orders-page-mobile';
+import { OrdersPageDesktop } from './src/pages/orders-page-desktop/orders-page-desktop';
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
   
   {
     path: 'pedidos',
+    canMatch: [() => typeof window !== 'undefined' && window.innerWidth >= 768],
+    component: OrdersPageDesktop,
+  },
+  {
+    path: 'pedidos',
+    canMatch: [() => typeof window !== 'undefined' && window.innerWidth < 768],
     component: OrdersPageMobile,
   }
 ];

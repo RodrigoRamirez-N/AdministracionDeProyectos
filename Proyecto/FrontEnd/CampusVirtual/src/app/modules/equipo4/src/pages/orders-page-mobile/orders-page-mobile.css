@@ -137,6 +137,26 @@
   margin-top: 8px;
 }
 
+/* Botón completar todos */
+.complete-all-wrapper {
+  padding: 16px;
+}
+.btn-complete-all {
+  width: 100%;
+  padding: 14px;
+  background: #059600;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: background .2s ease, transform .2s ease;
+}
+.btn-complete-all:hover:enabled { background:#047a00; }
+.btn-complete-all:disabled { opacity:.6; cursor: default; }
+
 /* Animación simple */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }

@@ -1,18 +1,18 @@
 <div class="card">
   <img class="card-imagen" [src]="food.image_url" [alt]="food.name">
-  
+
   <div class="card-info">
     <h4 class="info-titulo">{{ food.name }}</h4>
     <p class="info-lugar">{{ food.description }}</p>
-    <p class="info-precio">{{ food.price }} MXN</p>
+    <p class="info-precio">{{ (+food.price) | number:'1.2-2' }} MXN</p>
   </div>
-  
+
   <div class="card-accion">
     <div class="likes">
       <span>{{ food.rating }}</span>
-      <span class="icon-heart">🤍</span> 
+      <span class="icon-heart">🤍</span>
     </div>
-    
+
     <button class="boton-mas" (click)="addToCart()">+</button>
   </div>
 </div>

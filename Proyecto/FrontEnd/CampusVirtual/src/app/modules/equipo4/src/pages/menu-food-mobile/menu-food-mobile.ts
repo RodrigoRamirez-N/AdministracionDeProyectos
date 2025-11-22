@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductCard } from '../../components/product-card/product-card';
 import { Equipo4ApiService, FoodItem } from '../../services/equipo4-api.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-menu-food-mobile',
@@ -46,13 +47,35 @@ export class MenuFoodMobile implements OnInit {
 
   // 2. Variables nuevas para el filtro
   displayedFoods: FoodItem[] = [];
-  selectedCategory: number = 0;
+  selectedCategory: number = 0; // 0 = Todos, otro = food_stand_id
+  standFilters: Array<{ id: number; name: string }> = [
+    { id: 0, name: 'Todos' }
+  ];
   cartCount: number = 0;
+  hasOrders: boolean = false;
 
-  constructor(private apiService: Equipo4ApiService) {}
+  constructor(private apiService: Equipo4ApiService, private cartService: CartService) {}
 
   ngOnInit() {
-    // Intentamos cargar de la API
+    // Cargar stands para filtros dinámicos
+    this.apiService.getFoodStands().subscribe({
+      next: (stands) => {
+        if (Array.isArray(stands) && stands.length) {
+          const mapped = stands
+            .map(s => ({ id: Number(s.id), name: String(s.name) }))
+            .filter(s => !!s.name && !Number.isNaN(s.id));
+          // Únicos por id
+          const uniqueById = Array.from(new Map(mapped.map(s => [s.id, s])).values());
+          this.standFilters = [{ id: 0, name: 'Todos' }, ...uniqueById];
+        }
+      },
+      error: () => {
+        // Si falla, mantenemos solo "Todos"
+        this.standFilters = [{ id: 0, name: 'Todos' }];
+      }
+    });
+
+    // Cargar alimentos desde API
     this.apiService.getFoods().subscribe({
       next: (data) => {
         if (data && data.length > 0) {
@@ -67,34 +90,37 @@ export class MenuFoodMobile implements OnInit {
     });
 
     this.updateCartCount();
-    window.addEventListener('storage', () => this.updateCartCount());
+    this.refreshOrdersFlag();
+    window.addEventListener('storage', () => {
+      this.updateCartCount();
+      this.refreshOrdersFlag();
+    });
   }
 
-  // 3. Función de filtrado (La que te faltaba)
-  filterFoods(idLocal: number) {
-    this.selectedCategory = idLocal;
-    if (idLocal === 0) {
+  // 3. Función de filtrado
+  filterFoods(standId: number) {
+    this.selectedCategory = standId;
+    if (standId === 0) {
       this.displayedFoods = this.foods;
     } else {
-      this.displayedFoods = this.foods.filter(item => item.food_stand_id === idLocal);
+      this.displayedFoods = this.foods.filter(item => item.food_stand_id === standId);
     }
   }
 
- // ...
   updateCartCount() {
-    const data = localStorage.getItem('equipo4_cart_items');
-    let cart: any[] = [];
-
-    try {
-      const parsed = data ? JSON.parse(data) : [];
-      // Si no es un array, usamos vacío
-      cart = Array.isArray(parsed) ? parsed : [];
-    } catch {
-      cart = [];
-    }
-
-    // Ahora es seguro usar .reduce
-    this.cartCount = cart.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
+    const items = this.cartService.getItems();
+    this.cartCount = items.reduce((sum: number, it: any) => sum + (Number(it.quantity) || 0), 0);
   }
-  // ...
+
+  refreshOrdersFlag() {
+    this.apiService.getOrders().subscribe({
+      next: (orders) => {
+        this.hasOrders = Array.isArray(orders) && orders.length > 0;
+      },
+      error: () => {
+        const flag = localStorage.getItem('equipo4_has_orders');
+        this.hasOrders = flag === 'true';
+      }
+    });
+  }
 }

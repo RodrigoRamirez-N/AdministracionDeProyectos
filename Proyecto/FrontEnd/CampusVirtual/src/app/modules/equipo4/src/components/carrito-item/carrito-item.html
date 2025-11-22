@@ -6,7 +6,7 @@
   <div class="item-info">
     <h4 class="item-nombre">{{ product?.name || title }}</h4>
     
-    <p class="item-precio">{{ product?.price || price }} MXN</p>
+    <p class="item-precio">{{ (product?.price || price) | number:'1.2-2' }} MXN</p>
     
     <a class="eliminar-link" (click)="eliminar()">Eliminar</a>
   </div>

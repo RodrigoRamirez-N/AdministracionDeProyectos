@@ -17,9 +17,10 @@ export class CarritoSummary {
   // ¡RECUPERAMOS ESTO PARA QUE DESKTOP NO FALLE!
   @Input() shipping: number = 25; 
 
-  @Output() checkout = new EventEmitter<string>();
+  @Output() checkout = new EventEmitter<void>();
 
-  deliveryType: 'delivery' | 'pickup' = 'delivery'; 
+  // Forzamos único tipo: recoger en tienda
+  deliveryType: 'pickup' = 'pickup'; 
 
   // --- CÁLCULOS ---
   
@@ -42,13 +43,13 @@ export class CarritoSummary {
   }
 
   // --- LÓGICA DEL SELECTOR (MOBILE) ---
-  setDeliveryType(type: 'delivery' | 'pickup') {
-    this.deliveryType = type;
-    // Si cambiamos la opción, actualizamos el precio del envío manualmente
-    this.shipping = type === 'delivery' ? 25 : 0;
+  // Desactivamos selección: siempre pickup (envío 0)
+  setDeliveryType(_type: 'delivery' | 'pickup') {
+    this.deliveryType = 'pickup';
+    this.shipping = 0;
   }
 
   onCheckout() {
-    this.checkout.emit(this.deliveryType);
+    this.checkout.emit();
   }
 }

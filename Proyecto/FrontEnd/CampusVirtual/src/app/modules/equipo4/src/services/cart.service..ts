@@ -30,11 +30,33 @@ export class CartService {
     if (existing) {
       existing.quantity = (existing.quantity || 1) + 1;
     } else {
-      const newProduct = { ...product, quantity: 1 };
+      // Aseguramos que guardamos todo lo necesario para el desktop
+      const newProduct = { 
+        ...product, 
+        quantity: 1,
+        // Si viene del desktop, ya trae standId. Si viene del mobile, lo trae como food_stand_id o similar.
+        // Estandarizamos a standId para el desktop.
+        standId: product.standId || product.food_stand_id,
+        standName: product.standName || 'Puesto' // Idealmente deberíamos tener el nombre
+      };
       items.push(newProduct);
     }
     
     this.save(items);
+  }
+
+  updateQuantity(id: number, change: number) {
+    const items = this.getItems();
+    const item = items.find((i: any) => i.id === id);
+
+    if (item) {
+      const newQuantity = (item.quantity || 1) + change;
+      // REGLA: Mínimo 1. Si intenta bajar de 1, no hacemos nada.
+      if (newQuantity >= 1) {
+        item.quantity = newQuantity;
+        this.save(items);
+      }
+    }
   }
 
   // 3. BORRAR UN ITEM

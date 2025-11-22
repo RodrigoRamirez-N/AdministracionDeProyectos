@@ -1,22 +1,10 @@
 <div class="summary-card">
   
   <div class="delivery-options">
-    <p class="delivery-title">¿Cómo quieres tu pedido?</p>
-    
-    <div 
-      class="delivery-option" 
-      [class.active]="deliveryType === 'pickup'"
-      (click)="setDeliveryType('pickup')">
+    <p class="delivery-title">Tipo de entrega fijo</p>
+    <div class="delivery-option active">
       <span>🏪 Recoger en Tienda</span>
       <span class="option-price">Gratis</span>
-    </div>
-
-    <div 
-      class="delivery-option" 
-      [class.active]="deliveryType === 'delivery'"
-      (click)="setDeliveryType('delivery')">
-      <span>🛵 A domicilio</span>
-      <span class="option-price">25 MXN</span>
     </div>
   </div>
 
@@ -24,17 +12,17 @@
 
   <div class="summary-fila">
     <span>Artículos ({{ displayCount }})</span>
-    <span class="precio-verde">{{ displaySubtotal }} MXN</span>
+    <span class="precio-verde">{{ displaySubtotal | number:'1.2-2' }} MXN</span>
   </div>
 
   <div class="summary-fila">
     <span>Costo de envío</span>
-    <span class="precio-verde">{{ shipping }} MXN</span>
+    <span class="precio-verde">0 MXN</span>
   </div>
 
   <div class="summary-fila total">
     <strong>Total</strong>
-    <strong class="precio-verde">{{ displayTotal }} MXN</strong>
+    <strong class="precio-verde">{{ displaySubtotal | number:'1.2-2' }} MXN</strong>
   </div>
 
 </div>

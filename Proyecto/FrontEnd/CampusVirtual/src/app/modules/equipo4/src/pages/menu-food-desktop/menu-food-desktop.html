@@ -7,13 +7,15 @@
 			<app-location-filter [locations]="locations" [(selected)]="selectedLocation"></app-location-filter>
 		</aside>
 		<section class="left">
-			<app-product-grid [products]="displayProducts" (addProduct)="onAddProduct($event)"></app-product-grid>
+			<app-product-grid [products]="displayProducts" (added)="refreshCartCount()"></app-product-grid>
 		</section>
 
 	</div>
 </div>
 <div class="space_btn_container"></div>
-<div class="btn_container"><a href="/equipo4/carrito" class="btn_cart">
+<div class="btn_container">
+	<a *ngIf="hasOrders" href="/equipo4/pedidos" class="btn_orders">Pedidos</a>
+	<a href="/equipo4/carrito" class="btn_cart">
 	<span class="cart-badge" *ngIf="cartCount">{{ cartCount }}</span>
 		<svg fill="#ffffff" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"
 			vector-effect="non-scaling-stroke" height="40px" width="40px" version="1.1" id="Layer_1"
@@ -74,4 +76,5 @@
 				</g>
 			</g>
 		</svg>
-	</a></div>
+		</a>
+	</div>

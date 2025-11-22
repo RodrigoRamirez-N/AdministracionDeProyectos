@@ -7,10 +7,11 @@
   <ng-container *ngFor="let g of groups">
     <h2 class="group-title">{{ g.standName }}</h2>
     <ng-container *ngFor="let it of g.items">
-      <app-carrito-item [title]="it.title" [price]="it.price" [quantity]="it.quantity" [imageUrl]="it.imageUrl || ''"
-        (increment)="incrementItem(it)" (decrement)="decrementItem(it)" (remove)="removeItem(it)"></app-carrito-item>
+      <app-carrito-item [id]="it.id" [title]="it.title" [price]="it.price" [quantity]="it.quantity"
+        [imageUrl]="it.imageUrl || ''" (change)="loadCart()"></app-carrito-item>
     </ng-container>
-    <app-carrito-summary [subtotal]="g.subtotal" [shipping]="shipping" [itemsCount]="g.itemCount"></app-carrito-summary>
+    <app-carrito-summary [subtotal]="g.subtotal" [shipping]="shipping" [itemsCount]="g.itemCount" (checkout)="finalizarPedidos()"></app-carrito-summary>
     <hr />
   </ng-container>
+  <!-- Botón externo eliminado: usamos el botón interno del summary como en mobile -->
 </div>

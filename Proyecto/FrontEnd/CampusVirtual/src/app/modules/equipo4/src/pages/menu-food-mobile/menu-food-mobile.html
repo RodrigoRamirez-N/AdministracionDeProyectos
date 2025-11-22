@@ -3,29 +3,13 @@
 </div>
 
 <div class="filter-buttons">
-  <button class="filter-button" 
-          [class.active]="selectedCategory === 0" 
-          (click)="filterFoods(0)">
-    Todos
+  <button class="filter-button"
+          *ngFor="let s of standFilters"
+          [class.active]="selectedCategory === s.id"
+          (click)="filterFoods(s.id)">
+    {{ s.name }}
   </button>
-
-  <button class="filter-button" 
-          [class.active]="selectedCategory === 1" 
-          (click)="filterFoods(1)">
-    El Punto
-  </button>
-
-  <button class="filter-button" 
-          [class.active]="selectedCategory === 2" 
-          (click)="filterFoods(2)">
-    Facultad de Sistemas
-  </button>
-
-  <button class="filter-button" 
-          [class.active]="selectedCategory === 3" 
-          (click)="filterFoods(3)">
-    Facultad de Música
-  </button>
+  
 </div>
 
 <div class="cafe-banner">
@@ -46,6 +30,8 @@
   <span style="font-size: 24px;">🛒</span>
   <span class="badge-contador" *ngIf="cartCount > 0">{{ cartCount }}</span>
 </a>
+
+<a *ngIf="hasOrders" routerLink="/equipo4/pedidos" class="btn-pedidos-mobile">Pedidos</a>
 
 <div class="bottom-nav">
   <div class="nav-item">

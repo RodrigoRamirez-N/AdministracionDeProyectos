@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-carrito-item',
@@ -9,53 +10,36 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./carrito-item.css']
 })
 export class CarritoItem {
-  // Aceptamos 'any' para que funcione con los datos viejos y los nuevos
   @Input() product: any; 
   
-  // Inputs para compatibilidad con Desktop (no los borres)
+  // Inputs para compatibilidad
+  @Input() id!: number; // Nuevo input para ID explícito
   @Input() title: string = '';
   @Input() price: any = 0;
   @Input() quantity: number = 1;
   @Input() imageUrl: string = '';
 
-  // Evento para avisar al padre que algo cambió
   @Output() change = new EventEmitter<void>();
 
-  // --- FUNCIONES QUE MODIFICAN EL LOCALSTORAGE ---
+  constructor(private cartService: CartService) {}
+
+  private getId(): number {
+    return this.id || (this.product ? this.product.id : 0);
+  }
 
   aumentar() {
-    this.updateQuantity(1);
+    this.cartService.updateQuantity(this.getId(), 1);
+    this.change.emit();
   }
 
   disminuir() {
-    this.updateQuantity(-1);
+    // El servicio ya valida que no baje de 1
+    this.cartService.updateQuantity(this.getId(), -1);
+    this.change.emit();
   }
 
   eliminar() {
-    this.updateQuantity(0, true); // true significa "borrar completo"
-  }
-
-  private updateQuantity(change: number, deleteItem: boolean = false) {
-    // 1. Leer carrito actual
-    let cart = JSON.parse(localStorage.getItem('equipo4_cart_items') || '[]');
-    
-    // 2. Buscar este producto
-    const index = cart.findIndex((item: any) => item.id === this.product.id);
-
-    if (index !== -1) {
-      if (deleteItem) {
-        cart.splice(index, 1); // Borrar
-      } else {
-        cart[index].quantity = (cart[index].quantity || 1) + change;
-        // Si baja a 0, borrarlo también
-        if (cart[index].quantity <= 0) {
-          cart.splice(index, 1);
-        }
-      }
-      
-      // 3. Guardar y avisar
-      localStorage.setItem('equipo4_cart_items', JSON.stringify(cart));
-      this.change.emit(); // Avisar al padre para que recargue
-    }
+    this.cartService.removeItem(this.getId());
+    this.change.emit();
   }
 }

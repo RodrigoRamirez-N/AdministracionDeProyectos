@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FoodItem } from '../../services/equipo4-api.service'; 
-import { CartService } from '../../services/cart.service.';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -25,7 +25,10 @@ export class ProductCard {
       price: Number(this.food.price), 
       image_url: this.food.image_url,
       likes: this.food.rating,
-      quantity: 1
+      quantity: 1,
+      // Agregamos datos del puesto para el desktop
+      standId: this.food.food_stand_id,
+      standName: this.food.description // Ojo: aquí usamos description como nombre del puesto por ahora, ya que no tenemos el nombre explícito en FoodItem
     };
 
     // Guardamos
@@ -33,6 +36,5 @@ export class ProductCard {
     
     // Avisamos
     this.added.emit();
-    alert('Se agregó: ' + this.food.name);
   }
 }

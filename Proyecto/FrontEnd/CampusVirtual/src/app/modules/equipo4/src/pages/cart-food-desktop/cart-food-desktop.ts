@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarritoItem } from '../../components/carrito-item/carrito-item';
 import { CarritoSummary } from '../../components/carrito-summary/carrito-summary';
-import { RouterModule } from '@angular/router'; // <-- LÍNEA IMPORTANTE 1
+import { RouterModule, Router } from '@angular/router';
+import { CartService } from '../../services/cart.service'; // Importar servicio
 
-// Interfaces declaradas antes del decorador para evitar error TS1206
+const API_BASE = 'http://localhost:8000/api/equipo4';
+
 interface CartItem { id: number; title: string; price: number; quantity: number; imageUrl?: string; standId: number; standName: string; }
 interface CartGroup { standId: number; standName: string; items: CartItem[]; subtotal: number; itemCount: number; }
 
@@ -15,7 +17,7 @@ interface CartGroup { standId: number; standName: string; items: CartItem[]; sub
     CommonModule,
     CarritoItem, 
     CarritoSummary,
-    RouterModule // <-- LÍNEA IMPORTANTE 2
+    RouterModule
   ], 
   templateUrl: './cart-food-desktop.html', 
   styleUrls: ['./cart-food-desktop.css'] 
@@ -30,75 +32,91 @@ export class CartFoodDesktop implements OnInit {
     return this.items.reduce((acc, it) => acc + it.price * it.quantity, 0);
   }
   get itemsCount(): number {
-    return this.items.reduce((acc, it) => acc + it.quantity, 0);
+    return this.items.reduce((acc, it) => acc + (Number(it.quantity) || 0), 0);
   }
+
+  constructor(private cartService: CartService, private router: Router) {} // Inyectar servicio y router
 
   async ngOnInit() {
-    await this.loadCartFromMocks();
-    this.refreshSelectedCount();
+    // 1. Intentar cargar del servicio
+    let rawItems = this.cartService.getItems();
+
+    // 2. Si está vacío, cargar mocks
+    if (rawItems.length === 0) {
+      await this.loadCartFromApi();
+      rawItems = this.cartService.getItems(); // Recargar después de guardar mocks
+    }
+
+    this.loadCart(); // Procesar items para la vista
+    window.addEventListener('storage', () => this.loadCart());
   }
 
-  private async loadCartFromMocks() {
+  private async loadCartFromApi() {
     try {
       const [ordersRes, orderItemsRes, foodsRes, standsRes] = await Promise.all([
-        fetch('/mock/equipo4/orders.json'),
-        fetch('/mock/equipo4/order-items.json'),
-        fetch('/mock/equipo4/foods.json'),
-        fetch('/mock/equipo4/food-stands.json')
+        fetch(`${API_BASE}/orders`),
+        fetch(`${API_BASE}/order-items`),
+        fetch(`${API_BASE}/foods`),
+        fetch(`${API_BASE}/food-stands`)
       ]);
-      if (!ordersRes.ok || !orderItemsRes.ok || !foodsRes.ok || !standsRes.ok) throw new Error('HTTP error cargando mocks');
+
+      if (!ordersRes.ok || !orderItemsRes.ok || !foodsRes.ok || !standsRes.ok) return;
+
       const orders: any[] = await ordersRes.json();
       const order = Array.isArray(orders) && orders.length ? orders[0] : null;
       const orderItems: any[] = await orderItemsRes.json();
       const foods: any[] = await foodsRes.json();
       const stands: any[] = await standsRes.json();
+
       const foodById = new Map<number, any>(foods.map(f => [Number(f.id), f]));
       const standById = new Map<number, string>(stands.map(s => [Number(s.id), String(s.name)]));
-      // Si hay selección en localStorage, usarla como fuente principal.
-      const lsRaw = localStorage.getItem('equipo4_cart_items');
-      let lsData: Record<string, number> | null = null;
-      if (lsRaw) {
-        try { lsData = JSON.parse(lsRaw); } catch { lsData = null; }
-      }
-      if (lsData && Object.keys(lsData).length) {
-        this.items = Object.entries(lsData).map(([foodId, qty]) => {
-          const f = foodById.get(Number(foodId));
-          return {
-            id: Number(foodId),
-            title: f ? String(f.name) : `Producto ${foodId}`,
-            price: f ? Number(f.price) : 0,
-            quantity: Number(qty) || 1,
-            imageUrl: f?.image_url || '',
-            standId: f ? Number(f.food_stand_id) : 0,
-            standName: f ? (standById.get(Number(f.food_stand_id)) || 'Puesto') : 'Puesto'
+
+      // Filtramos items de la orden de ejemplo
+      const filteredItems = order ? orderItems.filter(oi => Number(oi.order_id) === Number(order.id)) : orderItems;
+
+      // Convertimos y guardamos en el servicio uno por uno
+      filteredItems.forEach(oi => {
+        const f = foodById.get(Number(oi.food_id));
+        if (f) {
+          const productToCart = {
+            id: Number(f.id),
+            name: f.name,
+            place: f.description,
+            price: Number(f.price),
+            image_url: f.image_url,
+            likes: f.rating,
+            quantity: Number(oi.quantity || 1),
+            standId: Number(f.food_stand_id),
+            standName: standById.get(Number(f.food_stand_id)) || 'Puesto'
           };
-        });
-      } else {
-        const filteredItems = order ? orderItems.filter(oi => Number(oi.order_id) === Number(order.id)) : orderItems;
-        this.items = filteredItems.map(oi => {
-          const f = foodById.get(Number(oi.food_id));
-          const price = f ? Number(f.price) : 0;
-          return {
-            id: Number(oi.id),
-            title: f ? String(f.name) : `Producto ${oi.food_id}`,
-            price,
-            quantity: Number(oi.quantity ?? 1),
-            imageUrl: f?.image_url || '',
-            standId: f ? Number(f.food_stand_id) : 0,
-            standName: f ? (standById.get(Number(f.food_stand_id)) || 'Puesto') : 'Puesto'
-          };
-        });
-      }
-      this.buildGroups();
+          // Usamos addToCart para aprovechar la lógica de guardado
+          // Nota: addToCart suma cantidad si ya existe, aquí asumimos array vacío al inicio
+          this.cartService.addToCart(productToCart);
+        }
+      });
+
     } catch (e) {
-      console.error('Fallo al cargar carrito desde mocks, usando datos de ejemplo.', e);
-      this.items = [
-        { id: 1, title: 'Hamburguesa', price: 95, quantity: 1, imageUrl: '', standId: 1, standName: 'El Punto' },
-        { id: 2, title: 'Chilaquiles', price: 85, quantity: 2, imageUrl: '', standId: 2, standName: 'Facultad de Ingeniería' }
-      ];
-      this.buildGroups();
+      console.error('Error cargando datos desde API equipo4', e);
     }
-    this.refreshSelectedCount();
+  }
+
+  public loadCart() {
+    const rawItems = this.cartService.getItems();
+    
+    // Mapear de formato del servicio a formato interno CartItem
+    this.items = rawItems.map((i: any) => ({
+      id: i.id,
+      title: i.name || i.title,
+      price: Number(i.price),
+      quantity: Number(i.quantity) || 1, // Asegurar número
+      imageUrl: i.image_url || i.imageUrl || '',
+      standId: i.standId || 0,
+      standName: i.standName || 'Puesto'
+    }));
+
+    this.buildGroups();
+    this.selectedCount = this.itemsCount;
+    console.log('Cart loaded:', this.items, 'Count:', this.selectedCount);
   }
 
   private buildGroups() {
@@ -122,48 +140,17 @@ export class CartFoodDesktop implements OnInit {
     this.groups = Array.from(map.values());
   }
 
-  private refreshSelectedCount() {
-    const raw = localStorage.getItem('equipo4_cart_items');
-    if (!raw) { this.selectedCount = 0; return; }
+  async finalizarPedidos() {
+    if (!this.items.length) return;
+    const before = this.cartService.getItems().length;
     try {
-      const data = JSON.parse(raw) as Record<string, number>;
-      this.selectedCount = Object.values(data).reduce((a,b)=>a+b,0);
-    } catch { this.selectedCount = 0; }
-  }
-
-  // Actualiza localStorage según el estado actual de items
-  private persistLocalStorage() {
-    const payload: Record<string, number> = {};
-    for (const it of this.items) {
-      if (it.quantity > 0) payload[String(it.id)] = it.quantity;
+      await this.cartService.checkout();
+      alert(before ? 'Pedidos generados por puesto.' : 'Sin elementos.');
+      this.loadCart();
+      this.router.navigate(['/equipo4/pedidos']);
+    } catch (e) {
+      alert('No se pudieron generar los pedidos. Revisa el servidor.');
+      console.error(e);
     }
-    localStorage.setItem('equipo4_cart_items', JSON.stringify(payload));
-    this.refreshSelectedCount();
-  }
-
-  incrementItem(it: CartItem) {
-    it.quantity += 1;
-    this.recalculate();
-  }
-
-  decrementItem(it: CartItem) {
-    if (it.quantity > 1) {
-      it.quantity -= 1;
-    } else {
-      // Si llega a 1 y se decrementa, lo quitamos del carrito
-      this.items = this.items.filter(x => x !== it);
-    }
-    this.recalculate();
-  }
-
-  private recalculate() {
-    // Recalcular grupos y totales
-    this.buildGroups();
-    this.persistLocalStorage();
-  }
-
-  removeItem(it: CartItem) {
-    this.items = this.items.filter(x => x !== it);
-    this.recalculate();
   }
 }
