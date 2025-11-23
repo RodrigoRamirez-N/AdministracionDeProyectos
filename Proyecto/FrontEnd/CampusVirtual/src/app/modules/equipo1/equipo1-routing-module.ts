@@ -4,6 +4,7 @@ import { HolaEquipo1 } from './src/hola-equipo1/hola-equipo1';
 import { TourVirtual } from './src/tour-virtual/tour-virtual';
 import { Galeria } from './src/galeria/galeria';
 import { Transporte } from './src/transporte/transporte';
+import { Rutasurbanas } from './src/rutasurbanas/rutasurbanas';
 
 const routes: Routes = [
 	{
@@ -22,6 +23,9 @@ const routes: Routes = [
 		path: 'transporte',
 		component: Transporte,
 	},
+
+	{ path: 'rutas-urbanas', component: Rutasurbanas },
+
 ];
 
 @NgModule({	
