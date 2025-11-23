@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+/* Este código debe estar en tu archivo de estilos globales (styles.css) */
+:root {
+    /* 1. Base del color primario (Tu color rojo) */
+    --bs-primary: #EE001C; 
+    
+    /* 2. Código RGB CORREGIDO para #EE001C */
+    --bs-primary-rgb: 238, 0, 28; 
+
+    /* 3. Variables ESPECÍFICAS para el botón primario: */
+    
+    /* Color de Fondo y Borde Normal */
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-color: #fff; /* Color del texto del botón */
+
+    /* 4. Variables para el estado HOVER/FOCUS (Cuando pasas el mouse) */
+    --bs-btn-hover-bg: #D40018; /* Un rojo un poco más oscuro */
+    --bs-btn-hover-border-color: #D40018;
+
+    /* 5. Variables para el estado ACTIVO (Cuando se presiona o selecciona) */
+    --bs-btn-active-bg: #C10015; /* Un tono más oscuro */
+    --bs-btn-active-border-color: #C10015;
+}
+
+.btn-primary {
+    background-color: #EE001C !important;
+    border-color: #EE001C !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #D40018 !important;
+    border-color: #D40018 !important;
+    color: #FFFFFF !important;
+}

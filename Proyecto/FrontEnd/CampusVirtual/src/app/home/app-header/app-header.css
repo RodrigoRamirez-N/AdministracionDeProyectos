@@ -1,6 +1,5 @@
 .app-header {
   display: flex;
-  height: 100%;
   align-items: center;
   gap: 2rem;
   background: #fff;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppHeaderComponent } from './components/app-header/app-header';
 import { ProductGridComponent, ProductItem } from './components/product-grid/product-grid';
 import { LocationBannerComponent } from './components/location-banner/location-banner';
 import { LocationFilterComponent } from './components/location-filter/location-filter';
@@ -13,7 +12,6 @@ const API_BASE = 'http://localhost:8000/api/equipo4';
   standalone: true,
   imports: [
     CommonModule,
-    AppHeaderComponent,
     ProductGridComponent,
     LocationBannerComponent,
     LocationFilterComponent
