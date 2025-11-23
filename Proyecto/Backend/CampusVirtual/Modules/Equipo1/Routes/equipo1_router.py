@@ -1,10 +1,10 @@
 from typing import List, Optional, Literal
 from fastapi import APIRouter, Query
 
-from CampusVirtual.Modules.Equipo1.Model.equipo1_models import (
+from Modules.Equipo1.Model.equipo1_models import (
     Item, ItemCreate, Ruta
 )
-from CampusVirtual.Modules.Equipo1.Logic import equipo1_logic
+from Modules.Equipo1.Logic import equipo1_logic
 
 router = APIRouter()
 
