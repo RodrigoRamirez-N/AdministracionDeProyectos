@@ -356,9 +356,9 @@
 .estacionamiento-image {
   width: 100%;
   max-width: 900px;
-  height: 360px;
+  height: 260px;
   object-fit: cover;
-  display: block;
+    clip-path: inset(10% 0 15% 0); /* Recortar imagen */
 }
 
 .estacionamiento-image-card a {
