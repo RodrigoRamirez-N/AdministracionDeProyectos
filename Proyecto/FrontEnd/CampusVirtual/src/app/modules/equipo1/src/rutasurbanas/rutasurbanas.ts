@@ -9,7 +9,7 @@ interface Horarios {
 }
 
 interface Mapa {
-  imagen?: string | null;   // 👈 ahora usamos imagen, no iframe
+  imagen?: string | null;   
 }
 
 interface Ruta {
@@ -30,13 +30,12 @@ interface Ruta {
   styleUrl: './rutasurbanas.css',
 })
 export class Rutasurbanas implements OnInit {
-  // 🔹 Datos fijos
   private rutasBase: Ruta[] = [
     {
       id: 'arteaga',
       nombre: 'Ruta Arteaga',
       tipo: 'urbana',
-      frecuencia_min: 33, // ✅ cada 33 min
+      frecuencia_min: 33, 
       horarios: {
         dias_habiles: '06:00-22:00',
         sabado: '07:00-21:00',
@@ -49,7 +48,6 @@ export class Rutasurbanas implements OnInit {
         'Facultad de Sistemas',
       ],
       mapa: {
-        // 👇 ruta a la imagen dentro de src/assets
         imagen: 'assets/rutas/ARTEAGA.png',
       },
     },
@@ -57,7 +55,7 @@ export class Rutasurbanas implements OnInit {
       id: 'lobus',
       nombre: 'Lobus UAdeC',
       tipo: 'escolar',
-      frecuencia_min: 25, // ✅ cada 25 min
+      frecuencia_min: 25, 
       horarios: {
         dias_habiles: '6:30-7:30, 12:30-2:30, 12:50-1:10, 3:30-4:10, 8:30-9:30',
         sabado: null,
