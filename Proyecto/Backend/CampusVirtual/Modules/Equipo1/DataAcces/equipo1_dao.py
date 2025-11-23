@@ -34,22 +34,30 @@ _RUTAS_DB: List[Ruta] = [
         id="arteaga",
         nombre="Ruta Arteaga",
         tipo="urbana",
-        frecuencia_min=33,   # <- antes 10
-        horarios=Horarios(dias_habiles="06:00-22:00", sabado="07:00-21:00", domingo="07:00-20:00"),
+        frecuencia_min=10,
+        horarios=Horarios(
+            dias_habiles="06:00-22:00",
+            sabado="07:00-21:00",
+            domingo="07:00-20:00"
+        ),
         paradas_principales=[
             "Centro de Arteaga",
             "Blvd. Fundadores",
             "Entronque UAdeC",
             "Facultad de Sistemas"
         ],
-        mapa=Mapa(iframe_src=None)
+        mapa=Mapa(iframe_src=None) 
     ),
     Ruta(
         id="lobus",
         nombre="Lobus UAdeC",
         tipo="escolar",
-        frecuencia_min=25,   # <- antes 15
-        horarios=Horarios(dias_habiles="06:30-21:30"),
+        frecuencia_min=15,
+        horarios=Horarios(
+            dias_habiles="06:30-21:30",
+            sabado=None,
+            domingo=None
+        ),
         paradas_principales=[
             "Parque UAdeC",
             "Rectoría",
