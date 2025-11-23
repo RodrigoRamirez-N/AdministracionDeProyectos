@@ -282,3 +282,57 @@ Referencia clara y concisa de los endpoints disponibles bajo la base `/api/equip
 - Notas:
   - `quantity` es opcional; por omisión es `1` si no se envía.
   - Debe existir la orden (`order_id`) y el producto (`food_id`).
+
+## Nuevo endpoint (patch equipo4)
+
+### PATCH /api/equipo4/orders/{order_id}/complete
+- Marca una orden como completada (completed) de forma automática.
+- No requiere cuerpo (body).
+- Si la orden ya estaba completada, simplemente la devuelve (operación idempotente).
+- Si la orden no existe, devuelve 404.
+
+```json
+{
+  "id": 105,
+  "food_stand_id": 1,
+  "payment_method_id": 2,
+  "type": "para_llevar",
+  "instructions": "sin cebolla",
+  "status": "completed",
+  "created_at": "2025-11-20T00:00:00"
+}
+```
+
+### PATCH /api/equipo4/orders/{order_id}/status
+- Permite cambiar el estado de una orden a cualquier valor válido, por ejemplo:
+  - "pending"
+  - "paid"
+  - "completed"
+  - "cancelled"
+
+### Cuerpo del request
+
+```json
+{
+  "status": "paid"
+}
+```
+
+### Ejemplo de respuesta
+
+```json
+{
+  "id": 105,
+  "food_stand_id": 1,
+  "payment_method_id": 2,
+  "type": "para_llevar",
+  "instructions": "sin cebolla",
+  "status": "paid",
+  "created_at": "2025-11-20T00:00:00"
+}
+```
+
+### Notas adicionales
+- Estos endpoints fueron agregados en el archivo:
+
+  - Modules/Equipo4/Routes/equipo4_orders_router.py

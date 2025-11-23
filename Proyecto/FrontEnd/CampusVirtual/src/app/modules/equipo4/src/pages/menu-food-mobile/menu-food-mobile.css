@@ -3,67 +3,79 @@
   flex-direction: column;
   min-height: 100vh;
   background-color: #f7fafc;
+  font-family: 'Inter', sans-serif; /* Aseguramos una fuente bonita */
 }
 
-/* estilos de barra de busqueda */
-.search-bar {
-  width: 100%;
-  border-radius: 1000px;
-  height: 45px;
-  border: none;
-  background-color: #f0f0f0;
-  padding: 15px 20px;
-}
-
-.search-bar:focus {
-  border: 1px solid #c0c0c0;
-  outline: none;
-}
-
-/* 1. CSS PARA EL RECTÁNGULO SUPERIOR */
+/* 1. BARRA SUPERIOR Y BÚSQUEDA */
 .top-bar {
   background-color: white;
-  padding: 12px 16px;
+  padding: 16px;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.search-bar-mock {
-  background-color: #f1f5f9; /* Gris clarito */
-  border: none;
+.search-bar {
   width: 100%;
+  border-radius: 20px;
   height: 40px;
-  border-radius: 20px; /* Redondeado */
+  border: none;
+  background-color: #f1f5f9; /* Gris clarito */
+  padding: 0 16px;
+  font-size: 0.9rem;
+  color: #4a5568;
+  box-sizing: border-box; /* Para que el padding no rompa el ancho */
 }
 
+.search-bar:focus {
+  outline: 2px solid #e2e8f0;
+}
+
+/* 2. BOTONES DE FILTRO */
 .filter-buttons {
   display: flex;
-  padding: 16px 0 16px 16px;
-  gap: 12px;
+  gap: 8px;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  background-color: #f7fafc;
+  overflow-x: auto; /* Scroll horizontal si no caben */
+  -webkit-overflow-scrolling: touch; /* Inercia en iOS */
+  scroll-snap-type: x proximity; /* Efecto carrusel suave */
+  margin: 10px;
 }
 
 .filter-button {
   background-color: white;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  border-radius: 20px; /* Redondeado como pastilla */
   padding: 8px 16px;
   font-size: 0.9rem;
   font-weight: bold;
   color: #4a5568;
   cursor: pointer;
+  transition: all 0.2s;
+  flex: 0 0 auto; /* No crecer/encoger, ancho según contenido */
+  white-space: nowrap; /* No hacer wrap del texto */
+  overflow: hidden; /* Ocultar desborde si el texto es muy largo */
+  text-overflow: ellipsis; /* Mostrar '...' si se recorta */
+  scroll-snap-align: start; /* Alinear con el borde al hacer scroll */
 }
 
 .filter-button.active {
-  background-color: #e53e3e;
+  background-color: #e53e3e; /* Rojo */
   color: white;
   border-color: #e53e3e;
+  box-shadow: 0 2px 6px rgba(229, 62, 62, 0.3);
 }
 
+/* 3. BANNER DE LA CAFETERÍA (Esto arregla la imagen gigante) */
 .cafe-banner {
   background-color: white;
   margin: 0 16px;
-  border-radius: 12px; /* ¡Cambiado de 16px a 12px! */
+  border-radius: 16px;
   padding-bottom: 16px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -71,10 +83,10 @@
 
 .cafe-imagen {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-top-left-radius: 12px; /* ¡Cambiado de 16px a 12px! */
-  border-top-right-radius: 12px; /* ¡Cambiado de 16px a 12px! */
+  height: 150px; /* ¡IMPORTANTE! Fija la altura */
+  object-fit: cover; /* Recorta la imagen para que no se estire */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   margin-bottom: 8px;
 }
 
@@ -82,59 +94,132 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
+  color: #1a202c;
 }
 
-/* 2. CSS PARA EL HORARIO (BASADO EN TU CAPTURA) */
 .cafe-horario {
-  font-size: 16px; /* De image_07df3e.png */
-  font-weight: 700; /* 'Bold' de image_07df3e.png */
-  color: #000000; /* De image_07df3e.png */
+  font-size: 0.9rem;
+  color: #000000;
   margin: 4px 0 0 0;
+  font-weight: 700; /* Negrita */
 }
 
+/* 4. LISTA DE PRODUCTOS */
 .product-list {
-  padding: 16px ; 
-  display: flex; /* Para poder usar gap */
-  flex-direction: column; /* Para apilar las tarjetas */
-  gap: 16px;
-  height: 100%;
+  flex-grow: 1;
+  padding: 16px;
+  padding-bottom: 100px; /* Espacio extra para que no tape el botón flotante */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* 3. CSS PARA ICONOS DEL FOOTER */
+/* 5. BOTÓN FLOTANTE DEL CARRITO */
+.fab-carrito {
+  position: fixed;
+  bottom: 90px; /* Arriba del footer */
+  right: 20px;  
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+
+
+.btn-pedidos-mobile {
+  position: fixed;
+  /* Arriba del FAB del carrito (carrito bottom 90) */
+  bottom: 155px; /* claramente por encima */
+  right: 20px; /* alineado con el carrito */
+  background: #059600;
+  color: #fff;
+  font-weight: 600;
+  padding: 0 18px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  font-size: 15px;
+  z-index: 999;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.btn-pedidos-mobile:hover { background: #047a00; transform: translateY(-2px); }
+
+.fab-carrito:active {
+  transform: scale(0.95);
+}
+
+.fab-carrito img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.badge-contador {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #48bb78; /* Verde */
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+}
+
+/* 6. FOOTER / NAVEGACIÓN INFERIOR */
 .bottom-nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: white;
-  padding: 8px 0;
+  padding: 12px 0;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
-  position: fixed;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
   bottom: 0;
   width: 100%;
+  z-index: 900;
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #718096;
-  padding: 4px;
+  padding: 4px 10px;
   text-decoration: none;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px rgba(198, 198, 198, 0.567);
+  background-color: #fff;
 }
 
-/* Estilo para los emojis <span> del footer */
 .nav-item span:first-child {
-  font-size: 24px; /* Tamaño del emoji */
+  font-size: 16px; /* Tamaño del icono emoji */
   margin-bottom: 4px;
 }
 
+/* Estilo activo */
 .nav-item.active span {
-  color: #e53e3e; /* Color rojo para emoji y texto */
-}
-
-a.nav-item:active {
-  color: #e53e3e; /* Para el carrito */
+  color: #e53e3e;
 }

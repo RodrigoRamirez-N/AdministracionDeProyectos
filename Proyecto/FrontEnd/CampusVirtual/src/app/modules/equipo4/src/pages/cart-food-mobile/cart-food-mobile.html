@@ -3,6 +3,16 @@
   <h1>Mi Carrito</h1>
 </div>
 
-<app-carrito-item></app-carrito-item>
-<app-carrito-item></app-carrito-item>
-<app-carrito-summary></app-carrito-summary>
+<ng-container *ngFor="let g of groups">
+  <h2 class="group-title">{{ g.standName }}</h2>
+  <app-carrito-item 
+    *ngFor="let item of g.items" 
+    [product]="item"
+    (change)="actualizarCarrito()"> </app-carrito-item>
+  <app-carrito-summary 
+    [subtotal]="g.subtotal"
+    [itemsCount]="g.itemCount"
+    (checkout)="finalizarPedido()">
+  </app-carrito-summary>
+  <hr />
+</ng-container>
