@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MenuFoodDesktop } from './src/pages/menu-food-desktop/menu-food-desktop';
 import { MenuFoodMobile } from './src/pages/menu-food-mobile/menu-food-mobile';
 
-// ¡¡AQUÍ IMPORTAMOS LA PÁGINA NUEVA CON EL NOMBRE CORRECTO!!
+// Componentes de carrito por plataforma
+import { CartFoodDesktop } from './src/pages/cart-food-desktop/cart-food-desktop';
 import { CartFoodMobile } from './src/pages/cart-food-mobile/cart-food-mobile'; 
 
 const routes: Routes = [
@@ -22,7 +23,13 @@ const routes: Routes = [
   // ¡¡AQUÍ USAMOS EL COMPONENTE NUEVO!!
   {
     path: 'carrito',
-    component: CartFoodMobile, // <-- El nombre que te dijo tu compañero
+    canMatch: [() => typeof window !== 'undefined' && window.innerWidth >= 768],
+    component: CartFoodDesktop,
+  },
+  {
+    path: 'carrito',
+    canMatch: [() => typeof window !== 'undefined' && window.innerWidth < 768],
+    component: CartFoodMobile,
   }
 ];
 

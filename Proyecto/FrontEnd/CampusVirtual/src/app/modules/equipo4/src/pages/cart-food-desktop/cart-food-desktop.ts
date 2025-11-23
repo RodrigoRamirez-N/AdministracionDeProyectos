@@ -4,15 +4,15 @@ import { CarritoSummary } from '../../components/carrito-summary/carrito-summary
 import { RouterModule } from '@angular/router'; // <-- LÍNEA IMPORTANTE 1
 
 @Component({
-  selector: 'app-cart-food-mobile',
+  selector: 'app-cart-food-desktop',
   standalone: true,
   imports: [ 
     CarritoItem, 
     CarritoSummary,
     RouterModule // <-- LÍNEA IMPORTANTE 2
   ], 
-  templateUrl: './cart-food-mobile.html', 
-  styleUrls: ['./cart-food-mobile.css'] 
+  templateUrl: './cart-food-desktop.html', 
+  styleUrls: ['./cart-food-desktop.css'] 
 })
-export class CartFoodMobile { 
+export class CartFoodDesktop { 
 }
