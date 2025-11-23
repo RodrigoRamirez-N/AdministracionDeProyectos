@@ -1,0 +1,4 @@
+[
+  { "id": 1, "order_id": 1001, "food_id": 101, "quantity": 2 },
+  { "id": 2, "order_id": 1001, "food_id": 201, "quantity": 1 }
+]

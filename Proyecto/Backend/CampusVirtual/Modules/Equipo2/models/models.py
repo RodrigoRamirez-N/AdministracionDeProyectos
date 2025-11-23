@@ -28,10 +28,19 @@ class Phone(SQLModel, table=True):
 
 # --- Modelo para Campos Deportivos ---
 
+
 class SportField(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
     location: str
+    images: List["SportFieldImage"] = Relationship(back_populates="sport_field")
+
+class SportFieldImage(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    url: str
+    alt_text: str # Descripción de la imagen
+    sport_field_id: Optional[int] = Field(default=None, foreign_key="sportfield.id")
+    sport_field: Optional[SportField] = Relationship(back_populates="images")
 
 # --- Modelo para la Biblioteca y sus Salas ---
 
@@ -46,9 +55,10 @@ class LibraryInfo(SQLModel, table=True):
 
 class LibraryRoom(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    name: str # Ej: "Sala de Videoconferencias"
+    name: str 
     capacity: str
     equipment: str
+    image_url: Optional[str] = None
 
 # --- Modelo para Números Importantes ---
 
@@ -77,3 +87,25 @@ class FacultyResponse(SQLModel):
     id: int
     name: str
     contacts: List[ContactResponse] = []
+
+class SportFieldImageResponse(SQLModel):
+    id: int
+    url: str
+    alt_text: str
+
+class SportFieldResponse(SQLModel):
+    id: int
+    name: str
+    location: str
+    images: List[SportFieldImageResponse] = []
+
+class LibraryRoomResponse(SQLModel):
+    id: int
+    name: str
+    capacity: str
+    equipment: str
+    image_url: Optional[str]
+
+class LibraryInfoResponse(SQLModel):
+    info_general: LibraryInfo
+    salas_y_espacios: List[LibraryRoomResponse]

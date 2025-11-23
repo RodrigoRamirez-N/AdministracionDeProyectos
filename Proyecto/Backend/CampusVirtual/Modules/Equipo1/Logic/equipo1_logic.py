@@ -1,8 +1,8 @@
 from typing import List, Optional, Literal
 from fastapi import HTTPException
 
-from CampusVirtual.Modules.Equipo1.DataAcces import equipo1_dao
-from CampusVirtual.Modules.Equipo1.Model.equipo1_models import Item, ItemCreate, Ruta
+from Modules.Equipo1.DataAcces import equipo1_dao
+from Modules.Equipo1.Model.equipo1_models import Item, ItemCreate, Ruta
 
 
 

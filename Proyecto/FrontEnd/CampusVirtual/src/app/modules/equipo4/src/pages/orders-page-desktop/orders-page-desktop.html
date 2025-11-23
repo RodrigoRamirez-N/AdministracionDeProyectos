@@ -1,0 +1,59 @@
+<div class="orders-desktop-wrapper">
+  <div class="header">
+    <a routerLink="/equipo4" class="back-button">&lt;</a>
+    <h1>Mis Pedidos</h1>
+  </div>
+
+  <div class="complete-all-wrapper top" *ngIf="!isLoading">
+    <button class="btn-complete-all" [disabled]="completing || !hasPending" (click)="completeAllOrders()">
+      {{ completing ? 'Completando...' : (hasPending ? 'Completar todos los pedidos' : 'No hay pedidos pendientes') }}
+    </button>
+  </div>
+
+  <div class="orders-list">
+    <p *ngIf="isLoading" class="loading-text">Cargando pedidos...</p>
+
+    <div *ngIf="!isLoading && orders.length === 0" class="empty-state">
+      <p>No tienes pedidos aún.</p>
+    </div>
+
+    <div class="order-card" *ngFor="let order of orders">
+      <div class="order-header">
+        <span class="order-id">Orden #{{ order.id }}</span>
+        <span class="order-date">{{ order.created_at }}</span>
+      </div>
+      <div class="order-body">
+        <div class="order-info-left">
+          <p><strong>Tipo:</strong> {{ order.type }}</p>
+          <p><strong>Puesto:</strong> {{ order.standName }}</p>
+        </div>
+        <div class="order-info-right">
+          <span class="status-badge" [ngClass]="order.status">{{ order.status }}</span>
+        </div>
+      </div>
+      <div class="details-section" *ngIf="order.showDetails">
+        <div class="detail-divider"></div>
+        <p class="detail-title">Productos:</p>
+        <div *ngIf="order.items && order.items.length > 0; else noItems">
+          <div *ngFor="let item of order.items" class="detail-item">
+            <span>{{ item.quantity }}x {{ item.name }}</span>
+            <span>${{ item.price }}</span>
+          </div>
+        </div>
+        <ng-template #noItems>
+          <p style="font-size: 0.8rem; color: #aaa;">Detalles no disponibles</p>
+        </ng-template>
+        <div class="detail-divider"></div>
+        <div class="detail-total">
+          <span>Total:</span>
+          <span>${{ order.total || 0 }} MXN</span>
+        </div>
+      </div>
+      <div class="order-footer">
+        <button class="btn-ver" (click)="toggleDetails(order)">
+          {{ order.showDetails ? 'Ocultar Detalles' : 'Ver Detalles' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

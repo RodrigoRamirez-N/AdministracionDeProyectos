@@ -1,0 +1,80 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #fff;
+  color: #000000;
+  border-bottom: 1px solid #727272;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-left: 50px;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  width:85%;
+  justify-content: end;
+  /* Permitimos wrap/scroll en pantallas pequeñas via media queries */
+}
+
+.nav-item {
+  color: #000000;
+  text-decoration: none;
+  font-size: .95rem;
+  height: 50px;
+  width: 100px;
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  text-align: center; /* Asegura alineación de multilínea si ocurre */
+}
+
+.nav-item.active,
+.nav-item:hover {
+  color: #fff;
+  font-weight: bold;
+  background-color: #f00;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 1200px) {
+  .app-header { gap: 1.25rem; }
+  .nav-item { width: 90px; }
+}
+
+@media (max-width: 992px) {
+  .brand { margin-left: 20px; font-size: 1.15rem; }
+  .nav { width: 100%; gap: .75rem; }
+  .nav-item { width: 80px; font-size: .85rem; }
+}
+
+@media (max-width: 768px) {
+  .app-header { flex-wrap: wrap; gap: .75rem; padding: .5rem .75rem; }
+  .brand { margin-left: 0; flex: 1 1 100%; text-align: center; }
+  .nav { width: 100%; justify-content: flex-start; flex: 1 1 100%; overflow-x: auto; padding-bottom: .25rem; }
+  .nav::-webkit-scrollbar { height: 6px; }
+  .nav::-webkit-scrollbar-track { background: transparent; }
+  .nav::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+  .nav-item { flex: 0 0 auto; width: auto; min-width: 72px; padding: 0 .75rem; }
+}
+
+@media (max-width: 480px) {
+  .nav { gap: .5rem; }
+  .nav-item { min-width: 64px; font-size: .75rem; height: 42px; }
+  .nav-item.active, .nav-item:hover { font-weight: 600; }
+}
+
+/* High-DPI hover refinement */
+@media (hover: none) {
+  .nav-item:hover { background-color: transparent; color: #000; }
+  .nav-item.active { background-color: #f00; color: #fff; }
+}

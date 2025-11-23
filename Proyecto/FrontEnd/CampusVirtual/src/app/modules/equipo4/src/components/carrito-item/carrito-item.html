@@ -1,16 +1,19 @@
 <div class="item-card">
-
-  <img class="item-imagen" src="https://www.cnature.es/wp-content/uploads/2021/12/hamburguesa-con-guacamole.jpg" alt="Hamburguesa">
+  <img class="item-imagen" 
+       [src]="product?.image_url || product?.image || imageUrl" 
+       [alt]="product?.name || title">
 
   <div class="item-info">
-    <h4 class="item-nombre">Hamburguesa</h4>
-    <p class="item-precio">#1,900</p>
+    <h4 class="item-nombre">{{ product?.name || title }}</h4>
+    
+    <p class="item-precio">{{ (product?.price || price) | number:'1.2-2' }} MXN</p>
+    
+    <a class="eliminar-link" (click)="eliminar()">Eliminar</a>
   </div>
 
   <div class="item-cantidad">
-    <button class="boton-menos">-</button>
-    <span>1</span>
-    <button class="boton-mas">+</button>
+    <button class="boton-menos" (click)="disminuir()">-</button>
+    <span>{{ product?.quantity || quantity }}</span>
+    <button class="boton-mas" (click)="aumentar()">+</button>
   </div>
-
 </div>

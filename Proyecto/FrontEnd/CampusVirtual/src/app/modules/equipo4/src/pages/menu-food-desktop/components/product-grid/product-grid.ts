@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card';
 
@@ -9,6 +9,8 @@ export interface ProductItem {
   imageUrl?: string;
   description?: string;
   category?: string;
+  standId?: number | null;
+  standName?: string;
 }
 
 @Component({
@@ -27,4 +29,10 @@ export class ProductGridComponent {
     { id: '5', title: 'Agua de horchata', price: 25, description: 'Vaso 500ml' },
     { id: '6', title: 'Nachos', price: 65, description: 'Con queso y jalapeño' },
   ];
+  @Output() added = new EventEmitter<void>();
+
+  // El ProductCard hará el add; aquí solo propagamos el evento 'added' hacia arriba.
+  onCardAdded() {
+    this.added.emit();
+  }
 }
