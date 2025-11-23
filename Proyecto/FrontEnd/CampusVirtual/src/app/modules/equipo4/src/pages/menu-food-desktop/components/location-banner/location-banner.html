@@ -1,7 +1,7 @@
 <figure class="location-banner" *ngIf="info as d">
-  <img [src]="d.imageUrl" [alt]="d.title" />
+  <img src="assets/images/Foto cafeteria.png" [alt]="d.title" />
   <figcaption>
-    <div class="title">{{ d.description || d.title }}</div>
-    <div class="hours" *ngIf="d.hours">Horario: {{ d.hours }}</div>
+    <div class="hours">cafetería <br>
+      Horario: 8:10 - 21:10</div>
   </figcaption>
 </figure>

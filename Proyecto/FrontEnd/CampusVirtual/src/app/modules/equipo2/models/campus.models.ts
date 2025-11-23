@@ -23,6 +23,7 @@ export interface SportField {
   id: number;
   name: string;
   location: string;
+  images: SportFieldImage[];
 }
 
 // --- Interfaces para la Biblioteca ---
@@ -40,6 +41,7 @@ export interface LibraryRoom {
   name: string;
   capacity: string;
   equipment: string;
+  image_url?: string;
 }
 
 export interface LibraryData {
@@ -54,4 +56,10 @@ export interface ImportantNumber {
   person_name: string;
   phone: string;
   email: string;
+}
+
+export interface SportFieldImage {
+  id: number;
+  url: string;
+  alt_text: string;
 }

@@ -1,0 +1,164 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7fafc;
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  flex-grow: 1;
+  margin: 0;
+  margin-right: 24px; /* Para compensar el botón de atrás */
+}
+
+.back-button {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1a202c;
+  width: 24px;
+}
+
+.orders-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* TARJETA */
+.order-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.order-id {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.order-date {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.order-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* COLORES DE ESTATUS */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-badge.completed {
+  background-color: #c6f6d5;
+  color: #276749; /* Verde */
+}
+
+.status-badge.pending {
+  background-color: #feebc8;
+  color: #9c4221; /* Naranja */
+}
+
+.btn-ver {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #4a5568;
+  font-weight: 600;
+  cursor: pointer;
+}
+.details-section {
+  background-color: #f7fafc; /* Un gris muy clarito para diferenciar */
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  animation: fadeIn 0.3s ease-in; /* Animación suave */
+}
+
+.detail-divider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 8px 0;
+}
+
+.detail-title {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #718096;
+  margin-bottom: 8px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: #2d3748;
+}
+
+.detail-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #e53e3e; /* Rojo */
+  margin-top: 8px;
+}
+
+/* Botón completar todos */
+.complete-all-wrapper {
+  padding: 16px;
+}
+.btn-complete-all {
+  width: 100%;
+  padding: 14px;
+  background: #059600;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: background .2s ease, transform .2s ease;
+}
+.btn-complete-all:hover:enabled { background:#047a00; }
+.btn-complete-all:disabled { opacity:.6; cursor: default; }
+
+/* Animación simple */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

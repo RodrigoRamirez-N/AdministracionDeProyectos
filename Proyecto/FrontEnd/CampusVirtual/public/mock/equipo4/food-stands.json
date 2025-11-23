@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "El Punto",
+    "description": "Cafetería central del campus",
+    "telephone": "555-0101",
+    "available": true
+  },
+  {
+    "id": 2,
+    "name": "Facultad de Ingeniería",
+    "description": "Cafetería de la Facultad de Ingeniería",
+    "telephone": "555-0102",
+    "available": true
+  },
+  {
+    "id": 3,
+    "name": "Facultad de Música",
+    "description": "Cafetería de la Facultad de Música",
+    "telephone": "555-0103",
+    "available": false
+  }
+]

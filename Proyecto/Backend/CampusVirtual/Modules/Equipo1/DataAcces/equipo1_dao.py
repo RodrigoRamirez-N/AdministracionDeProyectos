@@ -1,5 +1,5 @@
 from typing import List, Optional, Literal
-from CampusVirtual.Modules.Equipo1.Model.equipo1_models import (
+from Modules.Equipo1.Model.equipo1_models import (
     ItemCreate, Ruta, Horarios, Mapa
 )
 

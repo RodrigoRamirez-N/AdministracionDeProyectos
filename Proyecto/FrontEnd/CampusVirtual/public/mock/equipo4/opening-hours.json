@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "food_stand_id": 1,
+    "opening_time": "08:00:00",
+    "closing_time": "21:00:00",
+    "available_days": "L-V"
+  },
+  {
+    "id": 2,
+    "food_stand_id": 2,
+    "opening_time": "08:30:00",
+    "closing_time": "20:30:00",
+    "available_days": "L-V"
+  },
+  {
+    "id": 3,
+    "food_stand_id": 3,
+    "opening_time": "09:00:00",
+    "closing_time": "19:00:00",
+    "available_days": "L-S"
+  }
+]

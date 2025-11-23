@@ -1,22 +1,32 @@
 <div class="summary-card">
   
+  <div class="delivery-options">
+    <p class="delivery-title">Tipo de entrega fijo</p>
+    <div class="delivery-option active">
+      <span>🏪 Recoger en Tienda</span>
+      <span class="option-price">Gratis</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <div class="summary-fila">
-    <span>Subtotal</span>
-    <span class="precio-verde">200 MXN</span>
+    <span>Artículos ({{ displayCount }})</span>
+    <span class="precio-verde">{{ displaySubtotal | number:'1.2-2' }} MXN</span>
   </div>
 
   <div class="summary-fila">
-    <span>Costo de envio</span>
-    <span class="precio-verde">25 MXN</span>
+    <span>Costo de envío</span>
+    <span class="precio-verde">0 MXN</span>
   </div>
 
   <div class="summary-fila total">
     <strong>Total</strong>
-    <strong class="precio-verde">225 MXN</strong>
+    <strong class="precio-verde">{{ displaySubtotal | number:'1.2-2' }} MXN</strong>
   </div>
 
 </div>
 
 <div class="contenedor-boton-pagar">
-  <button class="boton-pagar">Finalizar Pedido</button>
+  <button class="boton-pagar" (click)="onCheckout()">Finalizar Pedido</button>
 </div>

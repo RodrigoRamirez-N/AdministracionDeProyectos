@@ -1,64 +1,120 @@
-<div class="container">
-  <h1>Información del Campus - Ciudad Universitaria UAdeC</h1>
-  <section class="card">
-    <h2><i class="icon">📞</i> Directorio del Campus</h2>
-    <input type="text" [formControl]="searchControl" placeholder="Buscar por facultad, nombre o cargo...">
-    
-    <div *ngIf="directory$ | async as faculties" class="directory-list">
-      <div *ngFor="let faculty of faculties" class="faculty-accordion">
-        <button class="faculty-header" (click)="toggleFaculty(faculty.id)">
-          <span>{{ faculty.name }}</span>
-          <span class="faculty-toggle-icon">{{ expandedFacultyId === faculty.id ? '−' : '+' }}</span>
-        </button>
-        <div class="faculty-content" *ngIf="expandedFacultyId === faculty.id">
-          <div *ngFor="let contact of faculty.contacts" class="contact-item">
-            <p><strong>{{ contact.name }}</strong> - {{ contact.title }}</p>
-            <p class="contact-details">
-              <span *ngFor="let phone of contact.phones">{{ phone.number }} &nbsp;</span>
-              <a *ngIf="contact.email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-            </p>
+<div class="main-container">
+
+  <!-- ================= HEADER ================= -->
+  <header class="main-header">
+    <h1>Información del Campus</h1>
+    <p>Explora los servicios y contactos de Ciudad Universitaria UAdeC</p>
+  </header>
+
+  <div class="layout-container">
+    <!-- ================= MENÚ LATERAL ================= -->
+    <aside class="sidebar-menu">
+      <button 
+        class="menu-item" 
+        (click)="setView('directorio')"
+        [class.active]="activeView === 'directorio'">
+        <i class="icon">📞</i> Directorio
+      </button>
+      <button 
+        class="menu-item" 
+        (click)="setView('biblioteca')"
+        [class.active]="activeView === 'biblioteca'">
+        <i class="icon">📚</i> Bibliotecas
+      </button>
+      <button 
+        class="menu-item" 
+        (click)="setView('campos')"
+        [class.active]="activeView === 'campos'">
+        <i class="icon">⚽</i> Campos Deportivos
+      </button>
+      <button 
+        class="menu-item" 
+        (click)="setView('numeros')"
+        [class.active]="activeView === 'numeros'">
+        <i class="icon">⭐</i> Números Usados
+      </button>
+    </aside>
+
+    <!-- ================= ÁREA DE CONTENIDO ================= -->
+    <main class="content-area">
+      <!-- SECCIÓN DIRECTORIO (se muestra condicionalmente) -->
+      <section *ngIf="activeView === 'directorio'" class="content-section">
+        <input type="text" [formControl]="searchControl" placeholder="Buscar por facultad, nombre o cargo...">
+        <div *ngIf="directory$ | async as faculties" class="directory-list">
+          <div *ngFor="let faculty of faculties" class="faculty-accordion">
+            <button class="faculty-header" (click)="toggleFaculty(faculty.id)">
+              <span>{{ faculty.name }}</span>
+              <span class="faculty-toggle-icon">{{ expandedFacultyId === faculty.id ? '−' : '+' }}</span>
+            </button>
+            <div class="faculty-content" *ngIf="expandedFacultyId === faculty.id">
+              <div *ngFor="let contact of faculty.contacts" class="contact-item">
+                <p><strong>{{ contact.name }}</strong> - {{ contact.title }}</p>
+                <p class="contact-details">
+                  <span *ngFor="let phone of contact.phones">{{ phone.number }} &nbsp;</span>
+                  <a *ngIf="contact.email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="card" *ngIf="libraryData$ | async as data">
-    <h2><i class="icon">📚</i> Bibliotecas</h2>
-    <div class="library-info">
-      <h3>{{ data.info_general.name }}</h3>
-      <p><strong>Horario:</strong> {{ data.info_general.schedule }}</p>
-      <p><strong>Ubicación:</strong> {{ data.info_general.location }}</p>
-      <p><strong>Informes:</strong> {{ data.info_general.contact_phone }} | <a href="mailto:{{ data.info_general.contact_email }}">{{ data.info_general.contact_email }}</a></p>
-      <a [href]="data.info_general.website_url" target="_blank" class="btn">Acceso al Sistema de Infotecas</a>
-    </div>
-    <h4>Salas y Espacios Disponibles:</h4>
-    <div class="rooms-grid">
-      <div *ngFor="let room of data.salas_y_espacios" class="room-card">
-        <strong>{{ room.name }}</strong>
-        <p>Capacidad: {{ room.capacity }}</p>
-        <p>Equipo: {{ room.equipment }}</p>
-      </div>
-    </div>
-  </section>
-  <div class="side-by-side">
-    <section class="card">
-      <h2><i class="icon">⚽</i> Campos Deportivos</h2>
-      <div *ngIf="sportFields$ | async as fields">
-        <div *ngFor="let field of fields" class="info-item">
-          <strong>{{ field.name }}</strong>
-          <p>{{ field.location }}</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="card">
-      <h2><i class="icon">⭐</i> Números Más Usados</h2>
-      <div *ngIf="importantNumbers$ | async as numbers">
-        <div *ngFor="let num of numbers" class="info-item">
-          <strong>{{ num.name }} - {{ num.person_name }}</strong>
-          <p>{{ num.phone }} | <a href="mailto:{{ num.email }}">{{ num.email }}</a></p>
+
+      <!-- ================= SECCIÓN BIBLIOTECA (CON IMÁGENES) ================= -->
+      <section *ngIf="activeView === 'biblioteca'" class="content-section">
+        <div *ngIf="libraryData$ | async as data">
+          <div class="library-info">
+            <h3>{{ data.info_general.name }}</h3>
+            <p><strong>Horario:</strong> {{ data.info_general.schedule }}</p>
+            <p><strong>Ubicación:</strong> {{ data.info_general.location }}</p>
+            <p><strong>Informes:</strong> {{ data.info_general.contact_phone }} | <a href="mailto:{{ data.info_general.contact_email }}">{{ data.info_general.contact_email }}</a></p>
+            <a [href]="data.info_general.website_url" target="_blank" class="btn">Acceso al Sistema de Infotecas</a>
+          </div>
+          <h4>Salas y Espacios Disponibles:</h4>
+          <div class="rooms-grid">
+            <div *ngFor="let room of data.salas_y_espacios" class="room-card">
+              <img *ngIf="room.image_url" [src]="room.image_url" [alt]="room.name" class="room-image">
+              <div class="room-details">
+                <strong>{{ room.name }}</strong>
+                <p>Capacidad: {{ room.capacity }}</p>
+                <p>Equipo: {{ room.equipment }}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+ <!-- ================= SECCIÓN CAMPOS DEPORTIVOS (CON GALERÍA Y SCROLL) ================= -->
+      <section *ngIf="activeView === 'campos'" class="content-section">
+        <div *ngIf="sportFields$ | async as fields" class="sport-fields-list">
+          <!-- Hacemos un loop por cada "cancha" (que ahora es una galería) -->
+          <div *ngFor="let field of fields" class="sport-field-group">
+            <h3>{{ field.name }}</h3>
+            <p>{{ field.location }}</p>
+            
+            <!-- La galería con scroll lateral -->
+            <div class="image-gallery-scroll">
+              <div *ngFor="let image of field.images" class="gallery-card">
+                <img [src]="image.url" [alt]="image.alt_text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN NÚMEROS MÁS USADOS -->
+      <section *ngIf="activeView === 'numeros'" class="content-section">
+        <div *ngIf="importantNumbers$ | async as numbers">
+          <div *ngFor="let num of numbers" class="info-item">
+            <strong>{{ num.name }} - {{ num.person_name }}</strong>
+            <p>{{ num.phone }} | <a href="mailto:{{ num.email }}">{{ num.email }}</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="footer-bar">
+    <button (click)="goHome()" class="btn btn-back"> ← Volver a Inicio </button>
   </div>
 </div>
