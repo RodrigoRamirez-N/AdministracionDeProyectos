@@ -4,20 +4,20 @@
             <h1>Galería de Imágenes</h1>
             <p>Bienvenido a la galería del Equipo 1. Aquí encontrarás una colección de imágenes destacadas.</p>
 
+            <div class="row g-4"> @for (url of images; track $index) {
 
-
-            <div class="row">
-                @for (url of images; track $index) {
-                <div class="image-wrapper">
-                    <img [src]="url" [alt]="'Imagen de la galería ' + ($index + 1)" loading="lazy"
-                        (error)="onImageError(url)">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="image-card"> <img [src]="url" [alt]="'Imagen de la galería ' + ($index + 1)"
+                            loading="lazy" (error)="onImageError(url)">
+                    </div>
                 </div>
+
                 } @empty {
                 <p>No hay imágenes disponibles para mostrar.</p>
                 }
             </div>
-
             <a class="btn btn-secondary m-3 ms-2" href="/home">Regresar Home</a>
+            <a class="btn btn-primary m-3 ms-2" href="/equipo1">Regresar Equipo1</a>
         </div>
     </div>
 </div>

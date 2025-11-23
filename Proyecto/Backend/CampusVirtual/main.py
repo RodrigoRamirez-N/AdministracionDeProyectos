@@ -6,7 +6,8 @@ from Modules.Equipo1.Routes.equipo1_router import router as equipo1_router
 from Modules.Equipo2.routes.equipo2_routes import equipo2_router, populate_database_if_empty
 from Modules.Equipo2.models.database import create_db_and_tables_equipo2
 #Imports Equipo 4
-from Modules.Equipo4.models.database import create_db_and_tables_equipo4
+from Modules.Equipo4.models.database import create_db_and_tables_equipo4, seed_initial_data_equipo4
+from Modules.Equipo4.Routes.equipo4_router import router as equipo4_router
 
 app = FastAPI()
 
@@ -33,7 +34,11 @@ def on_startup() -> None:
     #Funcion para equipo2
     create_db_and_tables_equipo2()
     populate_database_if_empty()
-
+    
+    #Funcion para equipo2
+    create_db_and_tables_equipo4()
+    seed_initial_data_equipo4()
+    
 #Router del Equipo 1  ---- Comentado temporalmente debido a fallas en su implementación
 #app.include_router(
 #    equipo1_router,
@@ -43,3 +48,11 @@ def on_startup() -> None:
 
 #Router del Equipo 2
 app.include_router(equipo2_router)
+
+#Router del Equipo 4
+app.include_router(
+    equipo4_router,
+    prefix="/api/equipo4",
+    tags=["Equipo 4"],
+)
+
