@@ -122,9 +122,9 @@
           <p class="mb-1" *ngIf="rutaSeleccionada.id !== 'lobus'">
             <strong>Horarios:</strong><br />
             Días hábiles:
-            {{ rutaSeleccionada.horarios?.dias_habiles || 'N/D' }}<br />
-            Sábado: {{ rutaSeleccionada.horarios?.sabado || 'N/D' }}<br />
-            Domingo: {{ rutaSeleccionada.horarios?.domingo || 'N/D' }}
+            {{ rutaSeleccionada.horarios.dias_habiles || 'N/D' }}<br />
+            Sábado: {{ rutaSeleccionada.horarios.sabado || 'N/D' }}<br />
+            Domingo: {{ rutaSeleccionada.horarios.domingo || 'N/D' }}
           </p>
 
           <p class="mb-1">
