@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hola-equipo1',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule], 
+  imports: [CommonModule, FormsModule], 
   templateUrl: './hola-equipo1.html',
   styleUrl: './hola-equipo1.css'
 })
@@ -27,10 +27,6 @@ export class HolaEquipo1 {
   navegarAMapa() {
      this.router.navigate(['/equipo1/mapa']);
    }
-
-  btnTransporte() {
-    this.router.navigate(['/equipo1/transporte']);
-  }
 
   btnRutasUrbanas() {
     this.router.navigate(['/equipo1/rutas-urbanas']); 
