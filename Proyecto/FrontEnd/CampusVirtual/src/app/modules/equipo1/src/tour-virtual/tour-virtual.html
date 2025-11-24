@@ -11,16 +11,108 @@
     <div class="tour-container">
       <div class="tour-frame">
         <div class="frame-glow"></div>
-        <div class="iframe-wrapper">
-          <iframe 
-            width="100%" 
-            height="640" 
-            frameborder="0" 
-            allow="xr-spatial-tracking; gyroscope; accelerometer" 
-            allowfullscreen 
-            scrolling="no" 
-            src="https://kuula.co/share/5zLN9?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1">
-          </iframe>
+        
+        <!-- Carousel Container -->
+        <div class="carousel-container">
+          <!-- Navigation Buttons -->
+          <button class="carousel-btn carousel-btn-prev" (click)="previousSlide()" [disabled]="currentSlide === 0">
+            <span class="btn-arrow">‹</span>
+          </button>
+          
+          <!-- Slides Wrapper -->
+          <div class="carousel-wrapper">
+            <div class="carousel-track" [style.transform]="'translateX(-' + (currentSlide * 100) + '%)'">
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="iframe-wrapper">
+                  <iframe 
+                    src="https://teliportme.com/embed/2505095?ar=-10&sfc=t&lp=lt&ls=d&lz=50&lo=1" 
+                    frameBorder="0" 
+                    scrolling="no" 
+                    height="500" 
+                    width="100%" 
+                    allowFullScreen 
+                    allow="vr,gyroscope,accelerometer,fullscreen">
+                  </iframe>
+                </div>
+                <div class="slide-caption">
+                  <span class="slide-number">1 / 4</span>
+                  <span class="slide-title">Entrada Principal</span>
+                </div>
+              </div>
+              
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="iframe-wrapper">
+                  <iframe 
+                    src="https://teliportme.com/embed/2505096?ar=-3&sfc=t&lp=lt&ls=d&lz=50&lo=1" 
+                    frameBorder="0" 
+                    scrolling="no" 
+                    height="500" 
+                    width="100%" 
+                    allowFullScreen 
+                    allow="vr,gyroscope,accelerometer,fullscreen">
+                  </iframe>
+                </div>
+                <div class="slide-caption">
+                  <span class="slide-number">2 / 4</span>
+                  <span class="slide-title">Planta baja</span>
+                </div>
+              </div>
+              
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="iframe-wrapper">
+                  <iframe 
+                    src="https://teliportme.com/embed/2505097?ar=-3&sfc=t&lp=lt&ls=d&lz=50&lo=1" 
+                    frameBorder="0" 
+                    scrolling="no" 
+                    height="500" 
+                    width="100%" 
+                    allowFullScreen 
+                    allow="vr,gyroscope,accelerometer,fullscreen">
+                  </iframe>
+                </div>
+                <div class="slide-caption">
+                  <span class="slide-number">3 / 4</span>
+                  <span class="slide-title">Primer piso</span>
+                </div>
+              </div>
+              
+              <!-- Slide 4 -->
+              <div class="carousel-slide">
+                <div class="iframe-wrapper">
+                  <iframe 
+                    src="https://teliportme.com/embed/2505098?ar=-3&sfc=t&lp=lt&ls=d&lz=50&lo=1" 
+                    frameBorder="0" 
+                    scrolling="no" 
+                    height="500" 
+                    width="100%" 
+                    allowFullScreen 
+                    allow="vr,gyroscope,accelerometer,fullscreen">
+                  </iframe>
+                </div>
+                <div class="slide-caption">
+                  <span class="slide-number">4 / 4</span>
+                  <span class="slide-title">Segundo Piso</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button class="carousel-btn carousel-btn-next" (click)="nextSlide()" [disabled]="currentSlide === 3">
+            <span class="btn-arrow">›</span>
+          </button>
+        </div>
+        
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <button 
+            *ngFor="let slide of slides; let i = index" 
+            class="indicator-dot" 
+            [class.active]="i === currentSlide"
+            (click)="goToSlide(i)">
+          </button>
         </div>
       </div>
       
