@@ -1,24 +1,62 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12">
-      <h1>Hola desde Equipo 1</h1>
-      <p>Bienvenido al módulo del Equipo 1</p>
+<div class="equipo1-wrapper">
+  <!-- Header Section -->
+  <div class="header-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="university-logo">
+        <!-- Espacio para imagen de la universidad -->
+        <div class="logo-placeholder">
+          <img src="https://universidadesgratuitas.com/storage/2021/03/Universidad-Autonoma-de-Coahuila-857x1024.png" alt="Universidad Autónoma de Coahuila" class="logo-img">
+        </div>
+      </div>
+      <h1 class="hero-title">Bienvenido al Campus Virtual</h1>
+      <p class="hero-subtitle">Explora nuestras instalaciones y servicios</p>
+      <div class="title-decoration"></div>
+    </div>
+  </div>
 
-      <button class="btn btn-primary m-3" (click)="navegarATourVirtual()">
-        Ir a Tour Virtual →
-      </button>
-      <button class="btn btn-primary m-3" (click)="btnGaleria()">
-        Ir a Galeria →
-      </button>
-      <button class="btn btn-primary m-3" (click)="navegarAMapa()">
-        Ir a Mapa →
-      </button>
-      <button class="btn btn-primary m-3" (click)="btnTransporte()">
-        Ir a Transporte y Estacionamiento →
-      </button>      
-    <button class="btn btn-primary m-3" (click)="btnRutasUrbanas()">
-        Ir a Rutas urbanas →
-      </button>
+  <!-- Navigation Cards Section -->
+  <div class="navigation-container">
+    <div class="nav-grid">
+      <!-- Card 1: Tour Virtual -->
+      <div class="nav-card" (click)="navegarATourVirtual()">
+        <div class="card-icon">🥽</div>
+        <h3 class="card-title">Tour Virtual</h3>
+        <p class="card-description">Recorre el campus en 360°</p>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 2: Galería -->
+      <div class="nav-card" (click)="btnGaleria()">
+        <div class="card-icon">🖼️</div>
+        <h3 class="card-title">Galería</h3>
+        <p class="card-description">Imágenes de instalaciones</p>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 3: Mapa -->
+      <div class="nav-card" (click)="navegarAMapa()">
+        <div class="card-icon">🗺️</div>
+        <h3 class="card-title">Mapa</h3>
+        <p class="card-description">Ubicaciones interactivas</p>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 4: Transporte -->
+      <div class="nav-card" (click)="btnTransporte()">
+        <div class="card-icon">🚌</div>
+        <h3 class="card-title">Transporte</h3>
+        <p class="card-description">Estacionamiento y rutas</p>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 5: Rutas Urbanas -->
+      <div class="nav-card" (click)="btnRutasUrbanas()">
+        <div class="card-icon">🚍</div>
+        <h3 class="card-title">Rutas Urbanas</h3>
+        <p class="card-description">Transporte público</p>
+        <div class="card-arrow">→</div>
+      </div>
     </div>
   </div>
 </div>
