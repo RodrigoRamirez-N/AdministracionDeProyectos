@@ -1,0 +1,46 @@
+.mapa-container {
+  width: 100%;
+  height: 70vh; 
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.mapa-container {
+  width: 100%;
+  height: 70vh;
+  min-height: 300px;
+  position: relative;
+}
+.map-placeholder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+}
+
+.emoji-div-icon {
+    background: transparent !important;
+    border: none !important;
+    z-index: 600; 
+}
+.emoji-pin {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    background-color: #f75555; /* Color del pin */
+    transform: rotateZ(-45deg); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.emoji-pin > div {
+    transform: rotateZ(45deg); /* Contrarresta la rotación del pin */
+    position: relative;
+    top: -5px; 
+    left: 1px;
+}
